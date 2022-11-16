@@ -14,7 +14,7 @@ export default StyleSheet.create({
       },
 
       elepages: {
-
+        backgroundColor: 'red',
       },
 
       logo: {

@@ -17,9 +17,13 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header></Header>
-      <NavigationContainer style={styles.elepages}>
-      <Tab.Navigator>
-          <Tab.Screen name="Hinta tänään" component={Elepricenow} />
+      
+      <NavigationContainer>
+      <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
+        tabBarStyle: { backgroundColor: '#5F5F5F'},
+        tabBarActiveTintColor: '#e91e63'
+        }}>
+          <Tab.Screen  name="Hinta tänään" component={Elepricenow} />
           <Tab.Screen name="Hintakehitys" component={Elediagrams} />
           <Tab.Screen name="Kulutus ja tuotanto" component={Eleproduce} />
         </Tab.Navigator>

@@ -1,8 +1,14 @@
 import React from 'react'
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import styles from '../style/style';
 
 export default function Eleproduce() {
-  return (
-    <View />
-  )
+
+    return (
+      <View>
+        <Text style={styles.title}>Kikkeliskokkelis</Text>
+        
+      </View>
+    );
+  
 }
