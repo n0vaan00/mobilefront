@@ -2,7 +2,6 @@ import React from 'react'
 import { View, Image, Text } from 'react-native';
 import styles from '../style/style';
 import { useFonts } from 'expo-font';
-import Burger from './Burger';
 
 export default function Header() {
   const [loaded] = useFonts({
@@ -20,7 +19,7 @@ export default function Header() {
       style={styles.logo} />
       <Text style={styles.name}>Sähköpäivystäjä</Text>
       </View>
-      <Burger />
+
     </ View>
   )
 }
