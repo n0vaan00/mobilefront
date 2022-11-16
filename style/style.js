@@ -1,4 +1,3 @@
-////npx expo install expo-font
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
@@ -30,13 +29,37 @@ export default StyleSheet.create({
       },
 
       footer: {
-        alignItems: 'center'
+        alignItems: 'center',
+        padding: 40
       },
 
       team: {
         fontSize:20,
         fontWeight: 'bold'
-      }
+      },
+
+      title: {
+
+      },
+
+      square: {
+        backgroundColor: '#E4E82A',
+        borderColor: 'black',
+        borderRadius: 2,
+        borderWidth: 1,
+        paddingTop: 40,
+        paddingBottom: 40,
+      },
+
+      text:{
+        paddingLeft: 20,
+        paddingTop: 20,
+        paddingBottom:20,
+      },
+
+      icon:{
+
+      },
 });
 
 
