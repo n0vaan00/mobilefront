@@ -1,8 +1,12 @@
 import React from 'react'
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
-export default function elediagrams() {
+
+export default function Elediagrams({route, navigation}) {
+
   return (
-    <View />
+    <View>
+      <Text>Hihhulihei</Text>
+    </View>
   )
 }
