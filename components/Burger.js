@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 import ModalDropdown from 'react-native-modal-dropdown';
 import styles from '../style/style';
-///<MaterialCommunityIcons name="hamburger" size={40} color="black" />
+
     export default function Burger() {
       return (
         <View style={styles.burger}>
