@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import {  Text, View } from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
@@ -23,7 +22,8 @@ const time = new Date().getHours() // current time, tunti. Toimii myös seuraava
 const index = time - 1 // tästä taulukon indeksistä haetaan hinta
 //const maxPrice = 0
 
-export default function App() {
+export default function Elepricenow() {
+
   const [data, setData] = useState([])
   const [prices, setPrices] = useState([]); //hinta-taulukko
   const [priceNow, setPriceNow] = useState(0); //hinta juuri nyt
