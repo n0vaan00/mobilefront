@@ -1,6 +1,6 @@
 ///npm i react-native-vector-icons    npm i react-xml-parser
-/// npm i --save react-native-modal-dropdown
-/// npm i @react-navigation/native    npx expo install react-native-screens react-native-safe-area-context    
+/// npm i @react-navigation/native    npx expo install react-native-screens react-native-safe-area-context
+////npx expo install expo-font  
 import { View } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";

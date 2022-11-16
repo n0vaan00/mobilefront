@@ -122,17 +122,18 @@ export default function App() {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Text>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
-      <Text>Hinta nyt: {priceNow} </Text>
+    <View style={styles.square}>
+      <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
+      <Text style={styles.text}>Hinta nyt: {priceNow} </Text>
       <MaterialCommunityIcons
         name={'arrow-' + arrow + '-bold'}
         color={color}
         size={40}
+        style={styles.icon}
       ></MaterialCommunityIcons>
-      <Text>Päivän ylin: {maxPrice} </Text>
-      <Text>Päivän alin: {minPrice} </Text>
-      <Text>Päivän keskihinta: {avg} </Text>
+      <Text style={styles.text}>Päivän ylin: {maxPrice} </Text>
+      <Text style={styles.text}>Päivän alin: {minPrice} </Text>
+      <Text style={styles.text}>Päivän keskihinta: {avg} </Text>
     </View>
   );
 }
