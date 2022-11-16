@@ -13,10 +13,6 @@ export default StyleSheet.create({
         flexDirection: 'row'
       },
 
-      elepages: {
-
-      },
-
       logo: {
         height: 90,
         width: 90
@@ -50,24 +46,27 @@ export default StyleSheet.create({
       },
 
       square: {
-        backgroundColor: '#E4E82A',
+        backgroundColor: '#5F5F5F',
         borderColor: 'black',
         borderRadius: 2,
         borderWidth: 1,
         paddingTop: 10,
         paddingBottom: 20,
+        height: 1000
       },
 
       important: {
         paddingLeft: 20,
         paddingBottom: 40,
         fontSize: 20,
+        color: 'white',
       },
 
       text:{
         paddingLeft: 20,
         paddingTop: 20,
         paddingBottom:20,
+        color: 'white',
       },
 
       icon:{
