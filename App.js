@@ -17,7 +17,6 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header></Header>
-      
       <NavigationContainer>
       <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
         tabBarStyle: { backgroundColor: '#5F5F5F'},
