@@ -124,13 +124,13 @@ export default function Elepricenow() {
   return (
     <View style={styles.square}>
       <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
-      <Text style={styles.text}>Hinta nyt: {priceNow} </Text>
+      <Text style={styles.text}>Hinta nyt: {priceNow}       
       <MaterialCommunityIcons
         name={'arrow-' + arrow + '-bold'}
         color={color}
         size={40}
         style={styles.icon}
-      ></MaterialCommunityIcons>
+      ></MaterialCommunityIcons></Text>
       <Text style={styles.text}>Päivän ylin: {maxPrice} </Text>
       <Text style={styles.text}>Päivän alin: {minPrice} </Text>
       <Text style={styles.text}>Päivän keskihinta: {avg} </Text>
