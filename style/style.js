@@ -1,10 +1,10 @@
+////npx expo install expo-font
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        marginTop: 10,
         backgroundColor: '#FFC300'
       },
 
@@ -25,6 +25,10 @@ export default StyleSheet.create({
         fontFamily: 'RubikGlitch'
       },
 
+      burger: {
+        alignItems: 'flex-end'
+      },
+
       footer: {
         alignItems: 'center'
       },
@@ -37,4 +41,3 @@ export default StyleSheet.create({
 
 
 
-////npx expo install expo-font

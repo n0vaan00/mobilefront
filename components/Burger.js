@@ -1,16 +1,16 @@
-////npm i react-navigation      npm i react-navigation-drawer
-
-import React from 'react'
-import { createAppContainer} from 'react-navigation';
-import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
-import {SafeAreaView } from 'react-native'
-import Elepricenow from './Elepricenow'
-import Elediagram from './Elediagram'
-import Eleproduce from './Eleproduce'
-
+import React  from 'react'
+import { View } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+import ModalDropdown from 'react-native-modal-dropdown';
+import styles from '../style/style';
+///<MaterialCommunityIcons name="hamburger" size={40} color="black" />
     export default function Burger() {
       return (
-        <View />
+        <View style={styles.burger}>
+          <ModalDropdown options={['Hinta tänään', 'Hintakehitys', 'Kulutus ja tuotanto']}>
+          <MaterialCommunityIcons name="hamburger" size={40} color="black" />
+          </ModalDropdown>  
+        </View>
       )
     }
     

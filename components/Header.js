@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Image, Text } from 'react-native';
 import styles from '../style/style';
 import { useFonts } from 'expo-font';
+import Burger from './Burger';
 
 export default function Header() {
   const [loaded] = useFonts({
@@ -13,10 +14,13 @@ export default function Header() {
   }
 
   return (
-    <View style={styles.header}>
+    <View>
+      <View style={styles.header}>
       <Image source = {require('../assets/sp3.png')}
       style={styles.logo} />
       <Text style={styles.name}>Sähköpäivystäjä</Text>
-      </ View>
+      </View>
+      <Burger />
+    </ View>
   )
 }
