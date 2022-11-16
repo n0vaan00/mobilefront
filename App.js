@@ -1,7 +1,8 @@
-import { StyleSheet,  View } from 'react-native';
+import { View } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";
 import Footer from "./components/Footer"; 
+import styles from './style/style'
 
 export default function App() {
   return (
@@ -12,12 +13,3 @@ export default function App() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

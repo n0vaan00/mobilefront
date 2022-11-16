@@ -4,8 +4,8 @@ import styles from "../style/style"
 
 export default function Footer() {
   return (
-    <View>
-      <Text>Sähkötiimi 2 - 2022</Text>
+    <View style={styles.footer}>
+      <Text style={styles.team}>Sähkötiimi 2 - 2022</Text>
     </View>
   )
 }
