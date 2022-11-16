@@ -112,7 +112,7 @@ export default function Elepricenow() {
         findMinPrice(prices)
         findAvg(prices)
         console.log('Seuraavan tunnin hinta: ' + priceNextHour)
-        console.log('Hinta nyt, ei sis  alv: ' + noAlv + 'snt/kWh')
+        //console.log('Hinta nyt, ei sis  alv: ' + noAlv + 'snt/kWh')
         console.log('Hinta nyt, sis alv: ' + sum + 'snt/kWh') 
         console.log('Päivän korkein: ' + maxPrice + 'snt/kWh') 
         console.log('Päivän matalin: ' + minPrice + 'snt/kWh') 

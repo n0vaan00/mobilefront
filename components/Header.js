@@ -6,6 +6,8 @@ import { useFonts } from 'expo-font';
 export default function Header() {
   const [loaded] = useFonts({
     RubikGlitch: require('../assets/fonts/RubikGlitch-Regular.ttf'),
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf')
   });
 
   if(!loaded) {
