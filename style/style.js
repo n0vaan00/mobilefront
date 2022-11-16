@@ -13,6 +13,10 @@ export default StyleSheet.create({
         flexDirection: 'row'
       },
 
+      elepages: {
+
+      },
+
       logo: {
         height: 90,
         width: 90

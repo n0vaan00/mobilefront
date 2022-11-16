@@ -1,5 +1,5 @@
-///npm i react-native-vector-icons    npm i react-xml-parser
-/// npm install @react-navigation/material-top-tabs react-native-tab-view     npx expo install react-native-pager-view    
+///npm i react-native-vector-icons        npm i react-xml-parser
+/// npm install @react-navigation/material-top-tabs react-native-tab-view         npx expo install react-native-pager-view    
 import { View } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Header></Header>
-      <NavigationContainer>
+      <NavigationContainer style={styles.elepages}>
       <Tab.Navigator>
           <Tab.Screen name="Hinta tänään" component={Elepricenow} />
           <Tab.Screen name="Hintakehitys" component={Elediagrams} />
