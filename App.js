@@ -1,10 +1,5 @@
 ///npm i react-native-vector-icons    npm i react-xml-parser
-<<<<<<< HEAD
-/// npm i @react-navigation/native    npx expo install react-native-screens react-native-safe-area-context
-////npx expo install expo-font  
-=======
 /// npm install @react-navigation/material-top-tabs react-native-tab-view     npx expo install react-native-pager-view    
->>>>>>> 4138824aa5b581bab43ae4b5cd6744228d1f7b3b
 import { View } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";
