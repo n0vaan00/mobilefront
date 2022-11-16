@@ -1,5 +1,4 @@
 ///npm i react-native-vector-icons    npm i react-xml-parser
-/// npm i --save react-native-modal-dropdown
 /// npm install @react-navigation/material-top-tabs react-native-tab-view     npx expo install react-native-pager-view    
 import { View } from 'react-native';
 import Header from "./components/Header";
