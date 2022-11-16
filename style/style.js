@@ -34,16 +34,19 @@ export default StyleSheet.create({
 
       footer: {
         alignItems: 'center',
-        padding: 40
+        padding: 15,
       },
 
       team: {
-        fontSize:20,
+        fontSize:15,
         fontWeight: 'bold'
       },
 
       title: {
-
+        paddingLeft: 20,
+        fontSize: 20,
+        backgroundColor: '#FFC300',
+        paddingTop: 20,
       },
 
       square: {
@@ -51,8 +54,14 @@ export default StyleSheet.create({
         borderColor: 'black',
         borderRadius: 2,
         borderWidth: 1,
-        paddingTop: 40,
+        paddingTop: 10,
+        paddingBottom: 20,
+      },
+
+      important: {
+        paddingLeft: 20,
         paddingBottom: 40,
+        fontSize: 20,
       },
 
       text:{
@@ -62,7 +71,12 @@ export default StyleSheet.create({
       },
 
       icon:{
+        paddingBottom: 40,
+      },
 
+      View:{
+        backgroundColor: '#FFC300',
+        color: '#FFC300',
       },
 });
 

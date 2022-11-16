@@ -1,6 +1,6 @@
 ///npm i react-native-vector-icons        npm i react-xml-parser
 /// npm install @react-navigation/material-top-tabs react-native-tab-view         npx expo install react-native-pager-view    
-import { View } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";
 import Elediagrams from "./components/Elediagrams";
