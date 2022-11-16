@@ -123,6 +123,7 @@ export default function Elepricenow() {
 
   return (
     <View>
+      <ScrollView>
         <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
         <View style={styles.square}>
         <Text style={styles.important}>Hinta nyt: {priceNow}       
@@ -136,6 +137,7 @@ export default function Elepricenow() {
         <Text style={styles.text}>Päivän alin: {minPrice} </Text>
         <Text style={styles.text}>Päivän keskihinta: {avg} </Text>
         </View>
+        </ScrollView>
     </View>
   );
 }
