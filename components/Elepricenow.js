@@ -123,21 +123,33 @@ export default function Elepricenow() {
 
   return (
     <View>
-      <ScrollView>
-        <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
         <View style={styles.square}>
-        <Text style={styles.important}>Hinta nyt: {priceNow}       
-        <MaterialCommunityIcons
-          name={'arrow-' + arrow + '-bold'}
-          color={color}
-          size={40}
-          style={styles.icon}
-        ></MaterialCommunityIcons></Text>
-        <Text style={styles.text}>Päivän ylin: {maxPrice} </Text>
-        <Text style={styles.text}>Päivän alin: {minPrice} </Text>
-        <Text style={styles.text}>Päivän keskihinta: {avg} </Text>
+        <ScrollView>
+        <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
+        <Text style={styles.flex}>
+          <Text style={styles.text}>Hinta nyt: </Text>
+            <Text style={styles.important}>{priceNow}       
+              <MaterialCommunityIcons
+                name={'arrow-' + arrow + '-bold'}
+                color={color}
+                size={40}
+                style={styles.icon}
+              ></MaterialCommunityIcons></Text>
+            </Text>
+        <Text style={styles.flex}>
+          <Text style={styles.text}>Päivän ylin: </Text>
+          <Text style={styles.notimportant}>{maxPrice} </Text>
+        </Text>
+        <Text style={styles.flex}>
+          <Text style={styles.text}>Päivän alin: </Text>
+          <Text style={styles.notimportant}>{minPrice}</Text>
+        </Text>
+          <Text style={styles.flex}>
+            <Text style={styles.text}>Päivän keskihinta:</Text>
+            <Text style={styles.notimportant}>{avg}</Text>
+          </Text>
+          </ScrollView>
         </View>
-        </ScrollView>
     </View>
   );
 }

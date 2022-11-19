@@ -40,9 +40,11 @@ export default StyleSheet.create({
 
       title: {
         paddingLeft: 20,
+        paddingBottom: 30,
         fontSize: 20,
-        backgroundColor: '#FFC300',
+        backgroundColor: '#5F5F5F',
         paddingTop: 20,
+        color: 'white',
       },
 
       info: {
@@ -53,35 +55,40 @@ export default StyleSheet.create({
 
       square: {
         backgroundColor: '#5F5F5F',
-        borderColor: 'black',
-        borderRadius: 2,
-        borderWidth: 1,
         paddingTop: 10,
         paddingBottom: 20,
-        height: 555
+        height: '100%',
+        width: '100%'
       },
 
       important: {
-        paddingLeft: 20,
         paddingBottom: 40,
-        fontSize: 20,
+        paddingLeft: 40,
+        fontSize: 40,
         color: 'white',
+        fontWeight: 'bold',
+      },
+
+      notimportant: {
+        color: 'white',
+        fontWeight: 'bold',
       },
 
       text:{
-        paddingLeft: 20,
-        paddingTop: 20,
-        paddingBottom:20,
         color: 'white',
-      },
-
-      icon:{
-        paddingBottom: 40,
+        padding: 20,
       },
 
       View:{
         backgroundColor: '#FFC300',
         color: '#FFC300',
+      },
+
+      flex:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingLeft: 20,
+        paddingBottom: 40,
       },
 });
 

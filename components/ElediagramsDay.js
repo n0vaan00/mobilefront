@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, SafeAreaView, Button } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, SafeAreaView, Button, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
@@ -99,10 +99,12 @@ export default function ElediagramsDay() {
   }, [])
 
   return (
-    <View style={styles.priceOfTheDay}>
-      <Text style={styles.title}>Sähkön hintakehitys </Text>
-      <Text style={styles.info}>viimeisen vuorokauden aikana</Text>
-      {priceOfTheDay()}
+    <View style={styles.square}>
+      <ScrollView>
+        <Text style={styles.title}>Sähkön hintakehitys </Text>
+        <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
+        {priceOfTheDay()}
+      </ScrollView>
     </View>
   )
 }

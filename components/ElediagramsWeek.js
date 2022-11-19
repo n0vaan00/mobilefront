@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions} from 'react-native';
+import { StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
@@ -105,10 +105,12 @@ export default function ElediagramsWeek() {
   }, [])
 
   return (
-    <View style={styles.priceOfTheDay}>
-      <Text style={styles.title}>Sähkön hintakehitys</Text>
-      <Text style={styles.info}>viimeisen viikon aikana</Text>
-      {priceOfTheWeek()}
+    <View style={styles.square}>
+      <ScrollView>
+        <Text style={styles.title}>Sähkön hintakehitys </Text>
+        <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
+        {priceOfTheWeek()}
+      </ScrollView>
     </View>
   )
 }
