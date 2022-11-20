@@ -17,9 +17,8 @@ export default function Header() {
   return (
     <View>
       <View style={styles.header}>
-      <Image source = {require('../assets/sp3.png')}
+      <Image source = {require('../assets/SPwText.png')}
       style={styles.logo} />
-      <Text style={styles.name}>Sähköpäivystäjä</Text>
       </View>
 
     </ View>

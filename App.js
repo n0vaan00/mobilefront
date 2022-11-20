@@ -19,8 +19,9 @@ const Tab = createMaterialTopTabNavigator();
 
 function Development() {
   return (
-    <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
-    tabBarStyle: { backgroundColor: '#808080'},
+    <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontWeight:'bold', color: 'white' },
+    tabBarStyle: { backgroundColor: '#808080', borderWidth: 2, borderColor: '#5F5F5F'},
+    tabBarIndicatorStyle: {backgroundColor: '#FFC300'}
     
     }}>
       <Tab.Screen name="Päivä" component={ElediagramsDay} />
@@ -31,14 +32,16 @@ function Development() {
   )
 }
 
-export default function App() {
+export default function App() { 
 
   return (
     <View style={styles.container}>
       <Header></Header>
       <NavigationContainer>
       <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
-        tabBarStyle: { backgroundColor: '#5F5F5F'},
+        tabBarStyle: { backgroundColor: '#5F5F5F', borderWidth: 1, borderColor: '#2B2B2B', borderRadius: 3},
+        tabBarIndicatorStyle: {backgroundColor: '#FFC300'}
+        
         
         }}>
           <Tab.Screen  name="Hinta tänään" component={Elepricenow} />

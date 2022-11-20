@@ -3,19 +3,22 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: 10,
-        backgroundColor: '#FFC300'
+        backgroundColor: '#2B2B2B',
+        borderRadius: 3,
       },
 
       header: {
-        margin: 10,
         paddingTop: 20,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        backgroundColor: '#FFC300',
+        borderRadius: 3
       },
 
       logo: {
-        height: 90,
-        width: 90
+        margin: 50,
+        flex: 1,
+        aspectRatio: 3.5,
+        resizeMode: 'contain'
       },
 
       name: {
@@ -31,6 +34,8 @@ export default StyleSheet.create({
       footer: {
         alignItems: 'center',
         padding: 15,
+        backgroundColor: '#FFC300',
+        borderRadius: 3,
       },
 
       team: {
@@ -45,6 +50,7 @@ export default StyleSheet.create({
         backgroundColor: '#5F5F5F',
         paddingTop: 20,
         color: 'white',
+        fontFamily: 'Roboto',
       },
 
       info: {
@@ -77,6 +83,7 @@ export default StyleSheet.create({
       text:{
         color: 'white',
         padding: 20,
+        fontFamily: 'Roboto',
       },
 
       View:{
