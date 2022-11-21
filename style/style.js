@@ -22,10 +22,6 @@ export default StyleSheet.create({
         resizeMode: 'contain'
       },
 
-      burger: {
-        alignItems: 'flex-end'
-      },
-
       footer: {
         alignItems: 'center',
         padding: 15,
