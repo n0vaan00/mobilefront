@@ -14,6 +14,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import ElediagramsWeek from './components/ElediagramsWeek';
 import ElediagramsMonth from './components/ElediagramsMonth';
 import ElediagramsYear from './components/ElediagramsYear';
+import Loading from './components/Loading';
 
 const Tab = createMaterialTopTabNavigator();
 
