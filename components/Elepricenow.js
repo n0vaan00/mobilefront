@@ -22,16 +22,13 @@ const URL = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documen
   + start + end
 const time = new Date().getHours() // current time, tunti. Toimii myös seuraavan tunnin hinnanhakua varten
 const index = time - 1 // tästä taulukon indeksistä haetaan hinta
-//const maxPrice = 0
 
 export default function Elepricenow() {
-
   const [data, setData] = useState([])
-  const [prices, setPrices] = useState([]); //hinta-taulukko
   const [priceNow, setPriceNow] = useState(0); //hinta juuri nyt
   const [priceNextHour, setPriceNextHour] = useState(0); //hinta seuraavalla tunnilla
-  const [arrow, setArrow] = useState('right') //nuolen suunnan määrittävä
-  const [color, setColor] = useState('yellow') //nuolen värin määrittävä
+  const [arrow, setArrow] = useState('left') //nuolen suunnan määrittävä
+  const [color, setColor] = useState('') //nuolen värin määrittävä
   const [maxPrice, setMaxPrice] = useState(0)
   const [minPrice, setMinPrice] = useState(0)
   const [avg, setAvg] = useState(0)
@@ -102,36 +99,36 @@ export default function Elepricenow() {
       .then(res => res.text())
       .then(data => {
         let json = new XMLParser().parseFromString(data);
-        //console.log(json.getElementsByTagName('price'));
-        setPrices(json.getElementsByTagName('price'))
-        let noAlv = Number((prices[index].value) / 10).toFixed(2) 
+        const temp = json.getElementsByTagName('price')
+        let noAlv = Number((temp[index].value) / 10).toFixed(2) 
         let sum = Number(noAlv * 1.24).toFixed(2) // alv nyt, ennen 1.12.22
-        let priceNext = Number((prices[time].value) / 10 * 1.24).toFixed(2) //alv nyt, ennen 1.12.22
+        let priceNext = Number((temp[time].value) / 10 * 1.24).toFixed(2) //alv nyt, ennen 1.12.22
         setPriceNow(sum)
         setPriceNextHour(priceNext)
+        findMaxPrice(temp)
+        findMinPrice(temp)
+/*         console.log('sum: ' + sum)
+        console.log('priceNext: ' + priceNext) */
         compare(sum, priceNext)
-        findMaxPrice(prices)
-        findMinPrice(prices)
-        findAvg(prices)
-        //console.log('Seuraavan tunnin hinta: ' + priceNextHour)
-        console.log('Hinta nyt, ei sis  alv: ' + noAlv + 'snt/kWh')
-        console.log('Hinta nyt, sis alv: ' + sum + 'snt/kWh') 
-        console.log('Päivän korkein: ' + maxPrice + 'snt/kWh') 
-        console.log('Päivän matalin: ' + minPrice + 'snt/kWh') 
-        console.log('Päivän ka: ' + avg + 'snt/kWh') 
+/*         console.log('hinta nyt:' + priceNow)
+        console.log('hinta tunnin päästä:' + priceNextHour)
+        console.log('arrow:' + arrow)
+        console.log('color:' + color) */
+        findAvg(temp)
       })
       .catch(err => console.log(err));
   }, [])
 
-  const [loaded] = useFonts({
+     const [loaded] = useFonts({
     RubikGlitch: require('../assets/fonts/RubikGlitch-Regular.ttf'),
     Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
     Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
     Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf')
-  });
-  if(!loaded) {
+    });
+    if(!loaded) {
     return null;
-  }
+    }
+ 
 
   return (
     <View>
