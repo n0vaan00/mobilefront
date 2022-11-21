@@ -2,8 +2,9 @@ import {  Text, View, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import styles from '../style/style';
 import { useFonts } from 'expo-font';
+import styles from '../style/style';
+
 
 const APIKEY = '4d24ca50-7859-4d0d-97c2-de16d61007af';
 const documentType = '&documentType=A44&' //mitä tietoaineistoa luetaan
@@ -112,7 +113,7 @@ export default function Elepricenow() {
         findMaxPrice(prices)
         findMinPrice(prices)
         findAvg(prices)
-        console.log('Seuraavan tunnin hinta: ' + priceNextHour)
+        //console.log('Seuraavan tunnin hinta: ' + priceNextHour)
         console.log('Hinta nyt, ei sis  alv: ' + noAlv + 'snt/kWh')
         console.log('Hinta nyt, sis alv: ' + sum + 'snt/kWh') 
         console.log('Päivän korkein: ' + maxPrice + 'snt/kWh') 

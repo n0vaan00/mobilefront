@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text,View } from 'react-native';
-import styles from "../style/style";
 import { useFonts } from 'expo-font';
+import styles from "../style/style";
 
 export default function Footer() {
   
