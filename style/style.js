@@ -22,12 +22,6 @@ export default StyleSheet.create({
         resizeMode: 'contain'
       },
 
-      name: {
-        marginTop: 30,
-        fontSize: 30,
-        fontFamily: 'RubikGlitch'
-      },
-
       burger: {
         alignItems: 'flex-end'
       },
