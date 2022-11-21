@@ -102,15 +102,15 @@ export default function Eleproduce() {
         <Text style={styles.title}>Sähkön kokonaiskulutus ja -tuotanto Suomessa kello {index} - {index + 1} (MWh/h)</Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Toteutunut kokonaiskulutus</Text>
-          <Text style={styles.important}>{lastLoad}</Text>
+          <Text style={styles.notimportant}>{lastLoad}</Text>
         </Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Suunniteltu kokonaistuotanto</Text>
-          <Text style={styles.important}>{lastGeneration}</Text>
+          <Text style={styles.notimportant}>{lastGeneration}</Text>
         </Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Laskennallinen tuontisähkön tarve</Text>
-          <Text style={styles.important}>{importNeed}</Text>
+          <Text style={styles.notimportant}>{importNeed}</Text>
         </Text>
         </ScrollView>
         </View>
