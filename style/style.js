@@ -24,10 +24,6 @@ export default StyleSheet.create({
         justifyContent: 'center',
       },
 
-      burger: {
-        alignItems: 'flex-end'
-      },
-
       footer: {
         alignItems: 'center',
         padding: 15,
