@@ -40,7 +40,6 @@ export default StyleSheet.create({
         paddingLeft: 20,
         paddingBottom: 30,
         fontSize: 20,
-        backgroundColor: '#5F5F5F',
         paddingTop: 20,
         color: 'white',
         fontFamily: 'Roboto',
@@ -54,11 +53,11 @@ export default StyleSheet.create({
       },
 
       square: {
-        backgroundColor: '#5F5F5F',
+        backgroundColor: '#2B2B2B',
         paddingTop: 10,
         paddingBottom: 20,
         height: '100%',
-        width: '100%'
+        width: '100%',
       },
 
       important: {
