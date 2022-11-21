@@ -5,6 +5,7 @@ import styles from '../style/style';
 
 export default function Header() {
 
+
   return (
     <View>
       <View style={styles.header}>
