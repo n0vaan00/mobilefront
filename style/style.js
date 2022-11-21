@@ -35,7 +35,7 @@ export default StyleSheet.create({
 
       team: {
         fontSize:15,
-        fontFamily: 'Roboto'
+        fontFamily: 'Robotobold'
       },
 
       title: {
