@@ -9,7 +9,6 @@ export default StyleSheet.create({
       },
 
       header: {
-        paddingTop: 20,
         flexDirection: 'row',
         backgroundColor: '#FFC300',
         borderRadius: 3
@@ -19,7 +18,10 @@ export default StyleSheet.create({
         margin: 50,
         flex: 1,
         aspectRatio: 3.5,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
 
       burger: {
@@ -73,7 +75,7 @@ export default StyleSheet.create({
 
       notimportant: {
         color: 'white',
-        fontFamily: 'Orbitronbold'
+        fontFamily: 'Orbitronbold',
       },
 
       text:{
