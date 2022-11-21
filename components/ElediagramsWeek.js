@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Dimensions, ScrollView} from 'react-native';
+import { Text, View, Dimensions, ScrollView} from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
