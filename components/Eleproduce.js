@@ -1,18 +1,9 @@
 import React from 'react'
 import { View, Text, ScrollView } from 'react-native';
 import styles from '../style/style';
-  import { useFonts } from 'expo-font';
+
 export default function Eleproduce() {
 
-  const [loaded] = useFonts({
-      RubikGlitch: require('../assets/fonts/RubikGlitch-Regular.ttf'),
-      Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
-      Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
-      Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf')
-      });
-      if(!loaded) {
-      return null;
-      }
     return (
       <View>
         <View style={styles.square}>
