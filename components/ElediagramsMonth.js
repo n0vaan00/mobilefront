@@ -106,7 +106,7 @@ export default function ElediagramsMonth() {
   return (
     <View style={styles.square}>
       <ScrollView>
-        <Text style={styles.title}>Sähkön hintakehitys </Text>
+        <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen kuukauden aikana</Text>
         {priceOfTheMonth()}
     </ScrollView>

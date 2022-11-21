@@ -70,7 +70,7 @@ export default function ElediagramsWeek() {
     backgroundColor: "purple",
     backgroundGradientFrom: "blue",
     backgroundGradientTo: "pink",
-    decimalPlaces: 2, // optional, defaults to 2dp
+    decimalPlaces: 0, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, //viivojen väri
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, //labeleiden väri
     style: {
@@ -107,7 +107,7 @@ export default function ElediagramsWeek() {
   return (
     <View style={styles.square}>
       <ScrollView>
-        <Text style={styles.title}>Sähkön hintakehitys </Text>
+        <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
         {priceOfTheWeek()}
       </ScrollView>

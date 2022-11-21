@@ -9,7 +9,6 @@ export default StyleSheet.create({
       },
 
       header: {
-        paddingTop: 20,
         flexDirection: 'row',
         backgroundColor: '#FFC300',
       },
@@ -18,7 +17,10 @@ export default StyleSheet.create({
         margin: 50,
         flex: 1,
         aspectRatio: 3.5,
-        resizeMode: 'contain'
+        resizeMode: 'contain',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       },
 
       footer: {
@@ -37,7 +39,6 @@ export default StyleSheet.create({
         paddingLeft: 20,
         paddingBottom: 30,
         fontSize: 20,
-        backgroundColor: '#5F5F5F',
         paddingTop: 20,
         color: 'white',
         fontFamily: 'Roboto',
@@ -45,11 +46,11 @@ export default StyleSheet.create({
 
 
       square: {
-        backgroundColor: '#5F5F5F',
+        backgroundColor: '#2B2B2B',
         paddingTop: 10,
         paddingBottom: 20,
         height: '100%',
-        width: '100%'
+        width: '100%',
       },
 
       important: {
@@ -62,7 +63,7 @@ export default StyleSheet.create({
 
       notimportant: {
         color: 'white',
-        fontFamily: 'Orbitronbold'
+        fontFamily: 'Orbitronbold',
       },
 
       text:{

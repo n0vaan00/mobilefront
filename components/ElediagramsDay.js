@@ -59,7 +59,7 @@ export default function ElediagramsDay() {
           chartConfig={chartConfig}
           bezier
           style={{
-            paddingRight:35,
+            paddingRight: 35,
             borderRadius: 16
           }}
         />
@@ -101,7 +101,7 @@ export default function ElediagramsDay() {
   return (
     <View style={styles.square}>
       <ScrollView>
-        <Text style={styles.title}>Sähkön hintakehitys </Text>
+        <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
         {priceOfTheDay()}
       </ScrollView>
