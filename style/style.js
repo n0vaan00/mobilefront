@@ -12,7 +12,6 @@ export default StyleSheet.create({
         paddingTop: 20,
         flexDirection: 'row',
         backgroundColor: '#FFC300',
-        borderRadius: 3
       },
 
       logo: {
@@ -44,12 +43,6 @@ export default StyleSheet.create({
         fontFamily: 'Roboto',
       },
 
-      info: {
-        paddingLeft: 20,
-        fontSize: 15,
-        backgroundColor: '#FFC300',
-        fontFamily: 'Roboto'
-      },
 
       square: {
         backgroundColor: '#5F5F5F',
