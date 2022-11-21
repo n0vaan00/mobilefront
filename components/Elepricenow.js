@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import styles from '../style/style';
+import { useFonts } from 'expo-font';
 
 const APIKEY = '4d24ca50-7859-4d0d-97c2-de16d61007af';
 const documentType = '&documentType=A44&' //mitä tietoaineistoa luetaan
@@ -120,6 +121,16 @@ export default function Elepricenow() {
       })
       .catch(err => console.log(err));
   }, [])
+
+  const [loaded] = useFonts({
+    RubikGlitch: require('../assets/fonts/RubikGlitch-Regular.ttf'),
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
+    Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf')
+  });
+  if(!loaded) {
+    return null;
+  }
 
   return (
     <View>

@@ -40,7 +40,7 @@ export default StyleSheet.create({
 
       team: {
         fontSize:15,
-        fontWeight: 'bold'
+        fontFamily: 'Roboto'
       },
 
       title: {
@@ -57,6 +57,7 @@ export default StyleSheet.create({
         paddingLeft: 20,
         fontSize: 15,
         backgroundColor: '#FFC300',
+        fontFamily: 'Roboto'
       },
 
       square: {
@@ -72,18 +73,18 @@ export default StyleSheet.create({
         paddingLeft: 40,
         fontSize: 40,
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Orbitronbold'
       },
 
       notimportant: {
         color: 'white',
-        fontWeight: 'bold',
+        fontFamily: 'Orbitronbold'
       },
 
       text:{
         color: 'white',
         padding: 20,
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto'
       },
 
       View:{
