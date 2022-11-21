@@ -21,7 +21,7 @@ const Tab = createMaterialTopTabNavigator();
 function Development() {
   return (
     <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontWeight:'bold', color: 'white' },
-    tabBarStyle: { backgroundColor: '#808080', borderWidth: 2, borderColor: '#5F5F5F'},
+    tabBarStyle: { backgroundColor: '#2B2B2B', borderWidth: 2, borderColor: '#5F5F5F'},
     tabBarIndicatorStyle: {backgroundColor: '#FFC300'}
     
     }}>
@@ -40,8 +40,8 @@ export default function App() {
       <Header />
       <NavigationContainer>
       <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
-        tabBarStyle: { backgroundColor: '#5F5F5F', borderWidth: 5, borderColor: '#FFC300'},
-        tabBarIndicatorStyle: {backgroundColor: 'black', height: 6}
+        tabBarStyle: { backgroundColor: '#2B2B2B', borderWidth: 5, borderColor: '#FFC300'},
+        tabBarIndicatorStyle: {backgroundColor: 'white', height: 6}
         }}>
           <Tab.Screen  name="Hinta tänään" component={Elepricenow} />
           <Tab.Screen name="Hintakehitys" component={Development} />
