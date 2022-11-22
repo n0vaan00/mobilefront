@@ -2,6 +2,7 @@
 /// npm install @react-navigation/material-top-tabs react-native-tab-view         npx expo install react-native-pager-view    
 ////// npm install @react-navigation/material-bottom-tabs react-native-paper 
 //npx expo install react-native-svg@13.4.0    npm install react-native-chart-kit
+/// npx expo install react-native-web@~0.18.7 react-dom@18.0.0 @expo/webpack-config@^0.17.0
 import { View, ScrollView } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";
