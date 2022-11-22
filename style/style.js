@@ -49,6 +49,7 @@ export default StyleSheet.create({
         backgroundColor: '#2B2B2B',
         paddingTop: 10,
         paddingBottom: 20,
+        height: '100%'
       },
 
       important: {
@@ -81,6 +82,9 @@ export default StyleSheet.create({
         paddingLeft: 20,
         paddingBottom: 40,
       },
+
+      error:{
+      }
 });
 
 

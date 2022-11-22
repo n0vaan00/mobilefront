@@ -16,6 +16,7 @@ import ElediagramsWeek from './components/ElediagramsWeek';
 import ElediagramsMonth from './components/ElediagramsMonth';
 import ElediagramsYear from './components/ElediagramsYear';
 import Loading from './components/Loading';
+import Errorinfo from './components/Errorinfo';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -47,6 +48,7 @@ export default function App() {
           <Tab.Screen  name="Hinta tänään" component={Elepricenow} />
           <Tab.Screen name="Hintakehitys" component={Development} />
           <Tab.Screen name="Kulutus ja tuotanto" component={Eleproduce} />
+          <Tab.Screen name="Error" component={Errorinfo} />
       </Tab.Navigator>
       </NavigationContainer>
       <Footer></Footer>
