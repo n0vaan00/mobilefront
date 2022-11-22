@@ -49,8 +49,6 @@ export default StyleSheet.create({
         backgroundColor: '#2B2B2B',
         paddingTop: 10,
         paddingBottom: 20,
-        height: '100%',
-        width: '100%',
       },
 
       important: {
@@ -58,7 +56,7 @@ export default StyleSheet.create({
         paddingLeft: 40,
         fontSize: 40,
         color: 'white',
-        fontFamily: 'Orbitronbold'
+        fontFamily: 'Orbitronbold',
       },
 
       notimportant: {
@@ -69,7 +67,9 @@ export default StyleSheet.create({
       text:{
         color: 'white',
         padding: 20,
-        fontFamily: 'Roboto'
+        fontFamily: 'Roboto',
+        paddingBottom: 20,
+        fontSize: 20,
       },
 
       View:{
@@ -78,8 +78,6 @@ export default StyleSheet.create({
       },
 
       flex:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
         paddingLeft: 20,
         paddingBottom: 40,
       },
