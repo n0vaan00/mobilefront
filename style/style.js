@@ -83,18 +83,19 @@ export default StyleSheet.create({
         paddingBottom: 40,
       },
 
-      error:{
-        textAlign: 'center',
-      },
-
       errortext: {
-        textAlign: 'center',
         fontSize: 20,
         color: 'white',
         fontFamily: 'Roboto',
         paddingBottom: 30,
         paddingTop: 20,
       },
+
+      flex2: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }
 });
 
 
