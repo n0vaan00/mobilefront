@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
 import styles from '../style/style';
-
+import DayList from './DayList';
 
 const APIKEY = '4d24ca50-7859-4d0d-97c2-de16d61007af';
 const documentType = '&documentType=A44&' //mitä tietoaineistoa luetaan
@@ -22,24 +22,30 @@ const URL = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documen
 const time = new Date().getHours() // current time, tunti. Toimii myös seuraavan tunnin hinnanhakua varten
 
 export default function ElediagramsDay() {
-  const [prices, setPrices] = useState([]); //hinta-taulukko
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
+  const [times, setTimes] = useState([]); //tyhjä aika-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
 
-  function getPriceOfTheDay(prices) {
+  function getPriceOfTheDay(prices, dates) {
     const tempArr = []
     for (let i = 0; i < 24; i++) {
       tempArr.push(Number(prices[i].value / 10 * 1.24).toFixed(2))
     }
+    const tempDatesArr = []
+    for (let x = 0; x < 24; x++) {
+      tempDatesArr.push(Number(dates[x].value - 1).toFixed(2)) // jotta saadaan indeksistä kellonaika
+    }
     setNewPrices(tempArr)
+    setTimes(tempDatesArr)
   }
 
   const priceOfTheDay = () => {
     if (newPrices.length) {
       return (
+        //JOUNI: tämä toimii
         <LineChart
           data={{
-            labels: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13",
-              "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+            labels: ["00","01","02","03","04","05","06","07","08","09","10","11","12",
+                      "12","14","15","16","17","18","19","20","21","22","23"],
             datasets: [
               {
                 data: newPrices.map(item => {
@@ -48,20 +54,32 @@ export default function ElediagramsDay() {
               }
             ]
           }}
+         /* TÄMÄ EI TOIMI 
+         data={{
+            labels: [
+              times.map(p => {
+                return p
+              })
+            ],
+            datasets: [
+              {
+                data: newPrices.map(item => {
+                  return parseInt(item)
+                })
+              }
+            ]
+          }} */
           width={Dimensions.get("window").width - 10} // from react-native
           height={220}
-          //yAxisSuffix="snt/kWh"
           yAxisInterval={1} // optional, defaults to 1
           fromZero='true' //näyttää y-akselin nollasta asti
-          //onDataPointClick	Function	Callback that takes {value, dataset, getColor}
-          //tähän voisi kikkailla sellaisen toiminnon, jolla nappulaa painamalla saisi 
-          //näkyviin tarkan ajan ja hinnan
           chartConfig={chartConfig}
           bezier
           style={{
             paddingRight: 35,
             borderRadius: 16
           }}
+
         />
       )
     }
@@ -90,10 +108,21 @@ export default function ElediagramsDay() {
       .then(res => res.text())
       .then(data => {
         let json = new XMLParser().parseFromString(data);
-        setPrices(json.getElementsByTagName('price'))
         const temp = json.getElementsByTagName('price')
+        const temp2 = json.getElementsByTagName('start')
+        //poistetaan taulukosta eka, turha startti
+        temp2.splice(0, 1);
+        const temp3 = json.getElementsByTagName('position')
         setNewPrices([])
-        getPriceOfTheDay(temp)
+        setTimes([])
+        getPriceOfTheDay(temp, temp3)
+        //seuraava hakee taulukon jokaiselle pistelle tarkan ajan,
+        // ja hinnan
+        //tää pitää siirtää omaan funktioon joka sit näyttää nuo,
+        //kun pistettä klikkaa
+        let pointsHour = (temp2[0].value).substring(11, 16)
+        let pointPrice = temp[0].value
+        //console.log('Aika ja hinta indeksissä 0: ' +pointsHour + ' ja ' + pointPrice)
       })
       .catch(err => console.log(err));
   }, [])
@@ -104,6 +133,7 @@ export default function ElediagramsDay() {
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
         {priceOfTheDay()}
+        <DayList />
       </ScrollView>
     </View>
   )

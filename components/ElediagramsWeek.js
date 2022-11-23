@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
 import styles from '../style/style';
+import Weeklist from './WeekList';
 
 const APIKEY = '4d24ca50-7859-4d0d-97c2-de16d61007af';
 const documentType = '&documentType=A44&' //mitä tietoaineistoa luetaan
@@ -11,10 +12,12 @@ const out_Domain = 'out_Domain=10YFI-1--------U&'
 const year = new Date().getFullYear()
 const month = new Date().getMonth() + 1
 const day = new Date().getDate()
-const sevenDaysAgo= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getDate()
+const sevenDaysAgoDay= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getDate()
+const sevenDaysAgoMonth= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getMonth() + 1
+const sevenDaysAgoYear= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getFullYear()
 const StartTime = '0000'
 const EndTime = '0000'
-const start = 'periodStart=' + year + month + sevenDaysAgo + StartTime + '&'
+const start = 'periodStart=' + sevenDaysAgoYear + sevenDaysAgoMonth + sevenDaysAgoDay + StartTime + '&'
 const end = 'periodEnd=' + year + month + day + EndTime
 
 const URL = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documentType + in_Domain + out_Domain
@@ -22,7 +25,6 @@ const URL = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documen
 const time = new Date().getHours() // current time, tunti. Toimii myös seuraavan tunnin hinnanhakua varten
 
 export default function ElediagramsWeek() {
-  const [prices, setPrices] = useState([]); //hinta-taulukko
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
 
   function getPriceOfTheWeek(prices) {
@@ -38,9 +40,10 @@ export default function ElediagramsWeek() {
       return (
         <LineChart
           data={{
-            labels: [sevenDaysAgo+'.'+month, (sevenDaysAgo+1)+'.'+month,  (sevenDaysAgo+2)+'.'+month, 
-                (sevenDaysAgo+3)+'.'+month, (sevenDaysAgo+4)+'.'+month, (sevenDaysAgo+5)+'.'+month, 
-                (sevenDaysAgo+6)+'.'+month, day+'.'+month], 
+            labels: [sevenDaysAgoDay+'.'+sevenDaysAgoMonth, (sevenDaysAgoDay+1)+'.'+sevenDaysAgoMonth,  
+            (sevenDaysAgoDay+2)+'.'+sevenDaysAgoMonth, (sevenDaysAgoDay+3)+'.'+sevenDaysAgoMonth, 
+            (sevenDaysAgoDay+4)+'.'+sevenDaysAgoMonth, (sevenDaysAgoDay+5)+'.'+sevenDaysAgoMonth, 
+            (sevenDaysAgoDay+6)+'.'+sevenDaysAgoMonth, day+'.'+month], 
             datasets: [
               {
                 data: newPrices.map(item => {
@@ -53,10 +56,8 @@ export default function ElediagramsWeek() {
           height={220}
           yAxisInterval={1} // optional, defaults to 1
           fromZero='true' //näyttää y-akselin nollasta asti
-          //onDataPointClick	Function	Callback that takes {value, dataset, getColor}
-          //tähän voisi kikkailla sellaisen toiminnon, jolla nappulaa painamalla saisi 
-          //näkyviin tarkan ajan ja hinnan
           chartConfig={chartConfig}
+          bezier
           style={{
             paddingRight:35,
             borderRadius: 16
@@ -73,9 +74,6 @@ export default function ElediagramsWeek() {
     decimalPlaces: 0, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`, //viivojen väri
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`, //labeleiden väri
-    style: {
-      borderRadius: 16,
-    },
     propsForDots: {
       strokeWidth: "1",
       stroke: "purple" //palleroiden väri,
@@ -92,14 +90,23 @@ export default function ElediagramsWeek() {
       .then(res => res.text())
       .then(data => {
         let json = new XMLParser().parseFromString(data);
-        setPrices(json.getElementsByTagName('price'))
         const temp = json.getElementsByTagName('price')
-        //hae ensin ekan päivän hinnat
-        //laske niiden ka ja syötä uuteen tauluun
-        //toista koko viikolle
-        //vasta sitten mappaus diagrammiin
+        const temp2 = json.getElementsByTagName('start')
         setNewPrices([])
         getPriceOfTheWeek(temp)
+        //seuraava hakee taulukon jokaiselle pistelle tarkan ajan,
+        // ja hinnan
+        //tää pitää siirtää omaan funktioon joka sit näyttää nuo,
+        //kun pistettä klikkaa
+        //console.log(temp2[0].value) //tällä saa ulos ekan pisteen pointsDaym ja kellonaika
+        let pointsYear = (temp2[0].value).substring(0,4)
+        let pointsMonth = (temp2[0].value).substring(5,7)
+        let pointsDay = (temp2[0].value).substring(8,10)
+        let pointsHour = (temp2[0].value).substring(11,16)
+        let pointPrice = temp[0].value
+        let pointTime = pointsDay + '.' + pointsMonth + '.' + pointsYear + ' ' + pointsHour
+       /*  console.log('pointTime: ' + pointTime)
+        console.log('pointPrice: ' + pointPrice) */
       })
       .catch(err => console.log(err));
   }, [])
@@ -108,8 +115,9 @@ export default function ElediagramsWeek() {
     <View style={styles.square}>
       <ScrollView>
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
-        <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
+        <Text style={styles.text}>Viimeisen vuorokauden aikana</Text>
         {priceOfTheWeek()}
+        <Weeklist />
       </ScrollView>
     </View>
   )
