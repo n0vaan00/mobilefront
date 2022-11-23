@@ -92,6 +92,8 @@ export default StyleSheet.create({
         fontSize: 20,
         color: 'white',
         fontFamily: 'Roboto',
+        paddingBottom: 30,
+        paddingTop: 20,
       },
 });
 
