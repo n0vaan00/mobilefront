@@ -91,10 +91,15 @@ export default StyleSheet.create({
         paddingTop: 20,
       },
 
-      flex2: {
+      errorflex: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+      },
+
+      listitem: {
+        color: 'black',
+        fontSize: 200,
       }
 });
 
