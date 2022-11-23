@@ -7,10 +7,10 @@ export default function Errorinfo() {
   return (
     <View>
       <View style={styles.square}>
-      <Text style={styles.title}>Hupsista jokin meni pieleen</Text>
+      <Text style={styles.errortext}>Hupsista jokin meni pieleen</Text>
       <Text><MaterialCommunityIcons
                 name={'alert-circle'}
-                size={40}
+                size={200}
                 style={styles.error}
               ></MaterialCommunityIcons>
       </Text>

@@ -84,7 +84,15 @@ export default StyleSheet.create({
       },
 
       error:{
-      }
+        textAlign: 'center',
+      },
+
+      errortext: {
+        textAlign: 'center',
+        fontSize: 20,
+        color: 'white',
+        fontFamily: 'Roboto',
+      },
 });
 
 
