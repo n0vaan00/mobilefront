@@ -49,7 +49,10 @@ export default StyleSheet.create({
         backgroundColor: '#2B2B2B',
         paddingTop: 10,
         paddingBottom: 20,
-        height: '100%'
+        height: '100%',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center', 
       },
 
       important: {
@@ -87,20 +90,16 @@ export default StyleSheet.create({
         fontSize: 20,
         color: 'white',
         fontFamily: 'Roboto',
-        paddingBottom: 30,
-        paddingTop: 20,
+        flex: 1,
       },
 
       errorflex: {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
+        flex: 2,
+        paddingBottom: 100,
       },
-
-      listitem: {
-        color: 'black',
-        fontSize: 200,
-      }
 });
 
 
