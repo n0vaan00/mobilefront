@@ -90,7 +90,6 @@ export default StyleSheet.create({
         fontSize: 20,
         color: 'white',
         fontFamily: 'Roboto',
-        flex: 1,
       },
 
       errorflex: {
