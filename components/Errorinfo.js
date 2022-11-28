@@ -12,7 +12,6 @@ export default function Errorinfo() {
           name={'alert-circle'}
           color={'white'}
           size= {200}
-          style={styles.error}
         />
     </View>
     )
