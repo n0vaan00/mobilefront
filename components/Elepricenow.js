@@ -2,6 +2,7 @@ import {  Text, View, ScrollView } from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { ActivityIndicator } from 'react-native-paper';
 import { useFonts } from 'expo-font';
 import styles from '../style/style';
 
@@ -25,7 +26,7 @@ const index = time - 1 // tästä taulukon indeksistä haetaan hinta
 
 export default function Elepricenow() {
   const [data, setData] = useState([])
-  const [priceNow, setPriceNow] = useState(null); //hinta juuri nyt
+  const [priceNow, setPriceNow] = useState(0); //hinta juuri nyt
   const [priceNextHour, setPriceNextHour] = useState(0); //hinta seuraavalla tunnilla
   const [arrow, setArrow] = useState('left') //nuolen suunnan määrittävä
   const [color, setColor] = useState('') //nuolen värin määrittävä
@@ -137,7 +138,7 @@ export default function Elepricenow() {
         <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Hinta nyt:  </Text>
-            <Text style={styles.important}>{priceNow?priceNow : 'Loading...'}       
+            <Text style={styles.important}>{priceNow?priceNow : <ActivityIndicator size="large" />}       
               <MaterialCommunityIcons
                 name={'arrow-' + arrow + '-bold'}
                 color={color}
@@ -147,15 +148,15 @@ export default function Elepricenow() {
             </Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Päivän ylin:  </Text>
-          <Text style={styles.notimportant}>{maxPrice?maxPrice : 'Loading...'} </Text>
+          <Text style={styles.notimportant}>{maxPrice?maxPrice : <ActivityIndicator size="large" />} </Text>
         </Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Päivän alin:  </Text>
-          <Text style={styles.notimportant}>{minPrice?minPrice : 'Loading...'}</Text>
+          <Text style={styles.notimportant}>{minPrice?minPrice : <ActivityIndicator size="large" />}</Text>
         </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Päivän keskihinta:  </Text>
-            <Text style={styles.notimportant}>{avg?avg : 'Loading...'}</Text>
+            <Text style={styles.notimportant}>{avg?avg : <ActivityIndicator size="large" />}</Text>
           </Text>
           </ScrollView>
         </View>
