@@ -91,14 +91,6 @@ export default StyleSheet.create({
         color: 'white',
         fontFamily: 'Roboto',
       },
-
-      errorflex: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 2,
-        paddingBottom: 100,
-      },
 });
 
 
