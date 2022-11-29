@@ -48,7 +48,7 @@ export default function App() {
           <Tab.Screen  name="Hinta tänään" component={Elepricenow} />
           <Tab.Screen name="Hintakehitys" component={Development} />
           <Tab.Screen name="Kulutus ja tuotanto" component={Eleproduce} />
-          <Tab.Screen name="Error" component={Errorinfo} />
+          
       </Tab.Navigator>
       </NavigationContainer>
       <Footer></Footer>
