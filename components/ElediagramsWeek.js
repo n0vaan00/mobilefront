@@ -2,6 +2,7 @@ import { Text, View, Dimensions, ScrollView} from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
+import { ActivityIndicator } from 'react-native-paper';
 import styles from '../style/style';
 import Weeklist from './WeekList';
 
@@ -76,7 +77,7 @@ export default function ElediagramsWeek() {
     labelColor: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //labeleiden väri
     propsForDots: {
       strokeWidth: "1",
-      stroke: "purple" //palleroiden väri,
+      stroke: "black" //palleroiden väri,
     }
   }
 
@@ -116,7 +117,7 @@ export default function ElediagramsWeek() {
       <ScrollView>
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>Viimeisen vuorokauden aikana</Text>
-        {priceOfTheWeek()}
+        {priceOfTheWeek()?priceOfTheWeek() : <ActivityIndicator size="large" color="#ffffff"/>}
         <Weeklist />
       </ScrollView>
     </View>

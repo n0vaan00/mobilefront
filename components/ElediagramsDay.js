@@ -95,7 +95,7 @@ export default function ElediagramsDay() {
     labelColor: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //labeleiden väri,
     propsForDots: {
       strokeWidth: "1",
-      stroke: "purple" //palleroiden väri,
+      stroke: "black" //palleroiden väri,
     }
   }
 
