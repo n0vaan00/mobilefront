@@ -54,8 +54,8 @@ const DayList = () => {
   return (
     <List.Section title="">
       <List.Accordion
-        title="Näytä tuntihinnat">
-        <List.Item title="00:00-01:00" description={newPrices[0]}/>
+        title="Näytä tuntihinnat" descriptionStyle={{backgroundColor: "white"}}>
+        <List.Item title="00:00-01:00" description={newPrices[0]} descriptionStyle={{color: 'red', backgroundColor: 'white'}}/>
         <List.Item title="01:00-02:00" description={newPrices[1]}/>
         <List.Item title="02:00-03:00" description={newPrices[2]}/>
         <List.Item title="03:00-04:00" description={newPrices[3]}/>

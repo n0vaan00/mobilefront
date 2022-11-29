@@ -24,7 +24,7 @@ function Development() {
   return (
     <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontWeight:'bold', color: 'white' },
     tabBarStyle: { backgroundColor: '#808080', borderWidth: 2, borderColor: '#5F5F5F'},
-    tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 5}
+    tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 2}
     
     }}>
       <Tab.Screen name="Päivä" component={ElediagramsDay} />
@@ -43,12 +43,11 @@ export default function App() {
       <NavigationContainer>
       <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
         tabBarStyle: { backgroundColor: '#5F5F5F'},
-        tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 6}
+        tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 2}
         }}>
           <Tab.Screen  name="Hinta tänään" component={Elepricenow} />
           <Tab.Screen name="Hintakehitys" component={Development} />
           <Tab.Screen name="Kulutus ja tuotanto" component={Eleproduce} />
-          
       </Tab.Navigator>
       </NavigationContainer>
       <Footer></Footer>

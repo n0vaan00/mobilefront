@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { Text,View, ScrollView } from 'react-native'
 import XMLParser from 'react-xml-parser';
+import { ActivityIndicator } from 'react-native-paper';
 import { useFonts } from 'expo-font';
 import styles from "../style/style"
 
@@ -28,25 +29,54 @@ const URL = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documen
 const URL2 = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documentType2 + processType2 + in_Domain + start + end
 
 export default function Eleproduce() {
-  const [loads, setLoads] = useState([]); // taulukko kulutustiedoille
+
   const [lastLoad, setLastLoad] = useState(''); //viimeisin toteutunut kokonaiskulutus
-  const [generations, setGenerations] = useState([]); //taulukko tuotantoluvuille
   const [lastGeneration, setLastGeneration] = useState(''); //ennustettu kokonaistuotanto
   const [importNeed, setImportNeed] = useState(''); // muuttuja tuontisähkön tarpeelle
 
-  // funktio tuntisähkön tarpeen laskentaan
+  // funktio tuontisähkön tarpeen laskentaan
   function importNeedCalculation(lastLoad,lastGeneration) {
     let situation = lastLoad - lastGeneration
-
-    if (situation >= 0) {
+/* console.log('last load: ' + lastLoad) //tämä ei saa mitään arvoa sivun latautuessa ekaa kertaa
+console.log('last gen: ' + lastGeneration)
+console.log('sit: ' + situation) */
+     if (situation >= 0) {
       setImportNeed(Number(situation));
     } else {
       setImportNeed(Number(0));
-    }
+    } 
+    setImportNeed(situation)
   }
 
   useEffect(() => {
-    fetch(URL, {
+    Promise.all([
+      fetch(URL),
+      fetch(URL2),{
+      headers: {
+        'method': 'GET',
+        'Content-Type': 'application/xml',
+      },}
+    ])
+      .then(([resLoad, resGeneration]) =>
+        Promise.all([resLoad.text(), resGeneration.text()])
+      )
+      .then(([dataLoad, dataGeneration]) => {
+        let json = new XMLParser().parseFromString(dataLoad);
+        let loadTemp = json.getElementsByTagName('quantity')
+        let lastLoadTemp =  Number(loadTemp[index].value)
+       // console.log('index: ' + index)
+       // console.log(temp2);
+        setLastLoad(Number(loadTemp[index].value));
+        let json2 = new XMLParser().parseFromString(dataGeneration);
+        let generationsTemp = json2.getElementsByTagName('quantity')
+        let lastGenerationTemp =  Number(generationsTemp[index].value)
+        //console.log(lastLoadTemp, lastGenerationTemp)
+        importNeedCalculation(lastLoadTemp,lastGenerationTemp)
+        setLastGeneration(Number(generationsTemp[index].value));
+      })
+      .catch(err => console.log(err));
+    }, [])
+   /*  fetch(URL, {
       headers: {
         'method': 'GET',
         'Content-Type': 'application/xml',
@@ -55,12 +85,13 @@ export default function Eleproduce() {
       .then(res => res.text())
       .then(data => {
         let json = new XMLParser().parseFromString(data);
-        setLoads(json.getElementsByTagName('quantity'))
         let temp = json.getElementsByTagName('quantity')
-        setLastLoad(Number(temp[index].value));
-
+        //console.log('index: ' + index)
+        let temp2 = (Number(temp[index].value))
+        //console.log(temp2)
+        setLastLoad(temp2);
       // tällä tavalla saa ulos tietyn tunnin kokonaiskulutuksen.
-      //  console.log(loads[index].value) 
+      //console.log(temp[index].value)
       })
       .catch(err => console.log(err));
   }, [])
@@ -75,15 +106,14 @@ export default function Eleproduce() {
       .then(res => res.text())
       .then(data => {
         let json = new XMLParser().parseFromString(data);
-        setGenerations(json.getElementsByTagName('quantity'))
-        let temp = json.getElementsByTagName('quantity')
-      // tällä tavalla saa ulos tietyn tunnin suunnitellun kokonaistuotannon.
-        console.log(temp[16].value) 
-        setLastGeneration(Number(temp[index].value));
-        importNeedCalculation(lastLoad,lastGeneration)
+        let generationsTemp = json.getElementsByTagName('quantity')
+        let lastGenerationTemp =  Number(generationsTemp[index].value)
+        //console.log(lastLoad, lastGenerationTemp)
+        importNeedCalculation(lastLoad,lastGenerationTemp)
+        setLastGeneration(Number(generationsTemp[index].value));
       })
       .catch(err => console.log(err));
-  }, [])
+  }, []) */
 
   const [loaded] = useFonts({
     RubikGlitch: require('../assets/fonts/RubikGlitch-Regular.ttf'),
@@ -102,15 +132,15 @@ export default function Eleproduce() {
         <Text style={styles.title}>Sähkön kokonaiskulutus ja -tuotanto Suomessa kello {index} - {index + 1} (MWh/h)</Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Toteutunut kokonaiskulutus  </Text>
-          <Text style={styles.notimportant}>{lastLoad}</Text>
+          <Text style={styles.notimportant}>{lastLoad?lastLoad : <ActivityIndicator size="small" color="#ffffff"/>}</Text>
         </Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Suunniteltu kokonaistuotanto  </Text>
-          <Text style={styles.notimportant}>{lastGeneration}</Text>
+          <Text style={styles.notimportant}>{lastGeneration?lastGeneration : <ActivityIndicator size="small" color="#ffffff"/>}</Text>
         </Text>
         <Text style={styles.flex}>
           <Text style={styles.text}>Laskennallinen tuontisähkön tarve  </Text>
-          <Text style={styles.notimportant}>{importNeed}</Text>
+          <Text style={styles.notimportant}>{importNeed?importNeed : <ActivityIndicator size="small" color="#ffffff"/>}</Text>
         </Text>
         </ScrollView>
         </View>
