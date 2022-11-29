@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Dimensions, SafeAreaView, Button, ScrollView } 
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
+import { ActivityIndicator } from 'react-native-paper';
 import styles from '../style/style';
 import DayList from './DayList';
 
@@ -132,7 +133,7 @@ export default function ElediagramsDay() {
       <ScrollView>
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
-        {priceOfTheDay()}
+        {priceOfTheDay()?priceOfTheDay() : <ActivityIndicator size="large" color="#ffffff"/>}
         <DayList />
       </ScrollView>
     </View>
