@@ -55,7 +55,7 @@ const DayList = () => {
     <List.Section title="">
       <List.Accordion
         title="Näytä tuntihinnat" descriptionStyle={{backgroundColor: "white"}} titleStyle={{color:'white', backgroundColor:'#808080'}} 
-        style={{backgroundColor:'#808080'}}>
+        style={{backgroundColor:'#808080', textAlign:'center'}}>
         <List.Item title="00:00-01:00" description={newPrices[0]} 
         descriptionStyle={{color: 'white'}} titleStyle={{color:'white'}} 
         style={{backgroundColor:'#808080'}}/>

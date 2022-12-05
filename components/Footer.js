@@ -19,6 +19,7 @@ export default function Footer() {
   return (
     <View style={styles.footer}>
       <Text style={styles.team}>Sähkötiimi 2 - 2022</Text>
+      <Text style={styles.team}>Tämä on frontti</Text>
     </View>
   )
 }
