@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import styles from './style/style'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import { useFonts } from 'expo-font';
 import ElediagramsWeek from './components/ElediagramsWeek';
 import ElediagramsMonth from './components/ElediagramsMonth';
 import ElediagramsYear from './components/ElediagramsYear';
@@ -22,7 +23,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function Development() {
   return (
-    <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontWeight:'bold', color: 'white' },
+    <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontFamily: 'Robotobold', color: 'white' },
     tabBarStyle: { backgroundColor: '#808080', borderWidth: 2, borderColor: '#5F5F5F'},
     tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 2}
     
@@ -33,15 +34,27 @@ function Development() {
       <Tab.Screen name="Vuosi" component={ElediagramsYear} />
     </Tab.Navigator>
   )
+  
 }
 
+
 export default function App() { 
+
+  const [loaded] = useFonts({
+    Roboto: require('./assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('./assets/fonts/Orbitron-Regular.ttf'),
+    Orbitronbold: require('./assets/fonts/Orbitron-Bold.ttf'),
+    Robotobold: require('./assets/fonts/Roboto-Bold.ttf')
+    });
+    if(!loaded) {
+    return null;
+    }
 
   return (
     <View style={styles.container}>
       <Header />
       <NavigationContainer>
-      <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontWeight:'bold', color: 'white' },
+      <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontFamily: 'Robotobold', color: 'white' },
         tabBarStyle: { backgroundColor: '#5F5F5F'},
         tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 2}
         }}>

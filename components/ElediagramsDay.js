@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Dimensions, SafeAreaView, Button, ScrollView } from 'react-native';
-import { useState, useEffect } from 'react';
+import { ScrollView, Text, View, Dimensions } from 'react-native';
+import { React, useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
 import { ActivityIndicator } from 'react-native-paper';
@@ -12,11 +12,127 @@ const in_Domain = 'in_Domain=10YFI-1--------U&' // maakoodi
 const out_Domain = 'out_Domain=10YFI-1--------U&'
 const year = new Date().getFullYear()
 const month = new Date().getMonth() + 1
-const day = new Date().getDate()
+let day = new Date().getDate()
+if (day === 1) {
+  day = '01'
+}
+if (day === 2) {
+  day = '02'
+}
+if (day === 3) {
+  day = '03'
+}
+if (day === 4) {
+  day = '04'
+}
+if (day === 5) {
+  day = '05'
+}
+if (day === 6) {
+  day = '06'
+}
+if (day === 7) {
+  day = '07'
+}
+if (day === 8) {
+  day = '08'
+}
+if (day === 9) {
+  day = '09'
+}
+
+if (month === 1) {
+  month = '01'
+}
+if (month === 2) {
+  month = '02'
+}
+if (month === 3) {
+  month = '03'
+}
+if (month === 4) {
+  month = '04'
+}
+if (month === 5) {
+  month = '05'
+}
+if (month === 6) {
+  month = '06'
+}
+if (month === 7) {
+  month = '07'
+}
+if (month === 8) {
+  month = '08'
+}
+if (month === 9) {
+  month = '09'
+}
+let nextDayDay = new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).getDate();
+//jos päivä on alle 10, se saadaan yksinumeroisena, jolloin url ei toimi
+//joten muutetaan ne kaksinumeroiseksi
+if (nextDayDay === 1) {
+  nextDayDay = '01'
+}
+if (nextDayDay === 2) {
+  nextDayDay = '02'
+}
+if (nextDayDay === 3) {
+  nextDayDay = '03'
+}
+if (nextDayDay === 4) {
+  nextDayDay = '04'
+}
+if (nextDayDay === 5) {
+  nextDayDay = '05'
+}
+if (nextDayDay === 6) {
+  nextDayDay = '06'
+}
+if (nextDayDay === 7) {
+  nextDayDay = '07'
+}
+if (nextDayDay === 8) {
+  nextDayDay = '08'
+}
+if (nextDayDay === 9) {
+  nextDayDay = '09'
+}
+const nextDayMonth = new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).getMonth() + 1;
+//jos kk on alle 10, se saadaan yksinumeroisena, jolloin url ei toimi
+//joten muutetaan ne kaksinumeroiseksi
+if (nextDayMonth === 1) {
+  nextDayMonth = '01'
+}
+if (nextDayMonth === 2) {
+  nextDayMonth = '02'
+}
+if (nextDayMonth === 3) {
+  nextDayMonth = '03'
+}
+if (nextDayMonth === 4) {
+  nextDayMonth = '04'
+}
+if (nextDayMonth === 5) {
+  nextDayMonth = '05'
+}
+if (nextDayMonth === 6) {
+  nextDayMonth = '06'
+}
+if (nextDayMonth === 7) {
+  nextDayMonth = '07'
+}
+if (nextDayMonth === 8) {
+  nextDayMonth = '08'
+}
+if (nextDayMonth === 9) {
+  nextDayMonth = '09'
+}
+const nextDayYear = new Date(new Date().getTime() + (24 * 60 * 60 * 1000)).getFullYear();
 const StartTime = '0000'
 const EndTime = '0000'
 const start = 'periodStart=' + year + month + day + StartTime + '&'
-const end = 'periodEnd=' + year + month + (day + 1) + EndTime
+const end = 'periodEnd=' + nextDayYear + nextDayMonth + nextDayDay + EndTime
 
 const URL = 'https://web-api.tp.entsoe.eu/api?securityToken=' + APIKEY + documentType + in_Domain + out_Domain
   + start + end
@@ -29,7 +145,7 @@ export default function ElediagramsDay() {
   function getPriceOfTheDay(prices, dates) {
     const tempArr = []
     for (let i = 0; i < 24; i++) {
-      tempArr.push(Number(prices[i].value / 10 * 1.24).toFixed(2))
+      tempArr.push(Number(prices[i].value / 10 * 1.10).toFixed(2)) //alv 10% 1.12 alkaen
     }
     const tempDatesArr = []
     for (let x = 0; x < 24; x++) {
@@ -42,11 +158,9 @@ export default function ElediagramsDay() {
   const priceOfTheDay = () => {
     if (newPrices.length) {
       return (
-        //JOUNI: tämä toimii
         <LineChart
           data={{
-            labels: ["00","01","02","03","04","05","06","07","08","09","10","11","12",
-                      "12","14","15","16","17","18","19","20","21","22","23"],
+            labels: ["23","01","03","05","07","09","11","13","15","17","19","21","23"],
             datasets: [
               {
                 data: newPrices.map(item => {
@@ -55,21 +169,6 @@ export default function ElediagramsDay() {
               }
             ]
           }}
-         /* TÄMÄ EI TOIMI 
-         data={{
-            labels: [
-              times.map(p => {
-                return p
-              })
-            ],
-            datasets: [
-              {
-                data: newPrices.map(item => {
-                  return parseInt(item)
-                })
-              }
-            ]
-          }} */
           width={Dimensions.get("window").width - 10} // from react-native
           height={220}
           yAxisInterval={1} // optional, defaults to 1
@@ -95,7 +194,7 @@ export default function ElediagramsDay() {
     labelColor: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //labeleiden väri,
     propsForDots: {
       strokeWidth: "1",
-      stroke: "black" //palleroiden väri,
+      stroke: "black"  //palleroiden väri,
     }
   }
 
@@ -128,13 +227,14 @@ export default function ElediagramsDay() {
       .catch(err => console.log(err));
   }, [])
 
+
   return (
     <View style={styles.square}>
       <ScrollView>
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
         {priceOfTheDay()?priceOfTheDay() : <ActivityIndicator size="large" color="#ffffff"/>}
-        <DayList />
+        <DayList newPrices={newPrices}/>
       </ScrollView>
     </View>
   )
