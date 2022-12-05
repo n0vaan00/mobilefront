@@ -44,7 +44,14 @@ export default StyleSheet.create({
         fontFamily: 'Roboto',
       },
 
-
+      lowkey: {
+        fontSize: 12,
+        backgroundColor: '#5F5F5F',
+        color: 'white',
+        fontFamily: 'Roboto',
+        paddingTop: 7
+      },
+      
       square: {
         backgroundColor: '#2B2B2B',
         paddingTop: 10,

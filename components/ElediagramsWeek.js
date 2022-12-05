@@ -12,10 +12,121 @@ const in_Domain = 'in_Domain=10YFI-1--------U&' // maakoodi
 const out_Domain = 'out_Domain=10YFI-1--------U&'
 const year = new Date().getFullYear()
 const month = new Date().getMonth() + 1
-const day = new Date().getDate()
-const sevenDaysAgoDay= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getDate()
-const sevenDaysAgoMonth= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getMonth() + 1
-const sevenDaysAgoYear= (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getFullYear()
+let day = new Date().getDate()
+if (day === 1) {
+  day = '01'
+}
+if (day === 2) {
+  day = '02'
+}
+if (day === 3) {
+  day = '03'
+}
+if (day === 4) {
+  day = '04'
+}
+if (day === 5) {
+  day = '05'
+}
+if (day === 6) {
+  day = '06'
+}
+if (day === 7) {
+  day = '07'
+}
+if (day === 8) {
+  day = '08'
+}
+if (day === 9) {
+  day = '09'
+}
+
+if (month === 1) {
+  month = '01'
+}
+if (month === 2) {
+  month = '02'
+}
+if (month === 3) {
+  month = '03'
+}
+if (month === 4) {
+  month = '04'
+}
+if (month === 5) {
+  month = '05'
+}
+if (month === 6) {
+  month = '06'
+}
+if (month === 7) {
+  month = '07'
+}
+if (month === 8) {
+  month = '08'
+}
+if (month === 9) {
+  month = '09'
+}
+let sevenDaysAgoDay = (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getDate()
+const sevenDaysAgoMonth = (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getMonth() + 1
+const sevenDaysAgoYear = (new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)).getFullYear()
+
+if (sevenDaysAgoDay === 1) {
+  sevenDaysAgoDay = '01'
+}
+if (sevenDaysAgoDay === 2) {
+  sevenDaysAgoDay = '02'
+}
+if (sevenDaysAgoDay === 3) {
+  sevenDaysAgoDay = '03'
+}
+if (sevenDaysAgoDay === 4) {
+  sevenDaysAgoDay = '04'
+}
+if (sevenDaysAgoDay === 5) {
+  sevenDaysAgoDay = '05'
+}
+if (sevenDaysAgoDay === 6) {
+  sevenDaysAgoDay = '06'
+}
+if (sevenDaysAgoDay === 7) {
+  sevenDaysAgoDay = '07'
+}
+if (sevenDaysAgoDay === 8) {
+  sevenDaysAgoDay = '08'
+}
+if (sevenDaysAgoDay === 9) {
+  sevenDaysAgoDay = '09'
+}
+
+if (sevenDaysAgoMonth === 1) {
+  sevenDaysAgoMonth = '01'
+}
+if (sevenDaysAgoMonth === 2) {
+  sevenDaysAgoMonth = '02'
+}
+if (sevenDaysAgoMonth === 3) {
+  sevenDaysAgoMonth = '03'
+}
+if (sevenDaysAgoMonth === 4) {
+  sevenDaysAgoMonth = '04'
+}
+if (sevenDaysAgoMonth === 5) {
+  sevenDaysAgoMonth = '05'
+}
+if (sevenDaysAgoMonth === 6) {
+  sevenDaysAgoMonth = '06'
+}
+if (sevenDaysAgoMonth === 7) {
+  sevenDaysAgoMonth = '07'
+}
+if (sevenDaysAgoMonth === 8) {
+  sevenDaysAgoMonth = '08'
+}
+if (sevenDaysAgoMonth === 9) {
+  sevenDaysAgoMonth = '09'
+}
 const StartTime = '0000'
 const EndTime = '0000'
 const start = 'periodStart=' + sevenDaysAgoYear + sevenDaysAgoMonth + sevenDaysAgoDay + StartTime + '&'
@@ -27,13 +138,27 @@ const time = new Date().getHours() // current time, tunti. Toimii myös seuraava
 
 export default function ElediagramsWeek() {
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
+  const [dates, setDates] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
 
   function getPriceOfTheWeek(prices) {
     const tempArr = []
-    for (let i = 0; i < (prices.length-24); i++) { //jostain syystä prices-taulussa on yksi vuorukausi enemmän
-      tempArr.push(Number(prices[i].value / 10 * 1.24).toFixed(2))
+    for (let i = 0; i < (prices.length - 24); i++) { //jostain syystä prices-taulussa on yksi vuorukausi enemmän
+      tempArr.push(Number(prices[i].value / 10 * 1.10).toFixed(2)) //alv 10% 1.12 alkaen
     }
     setNewPrices(tempArr)
+  }
+
+  function getDates(dates) {
+    const tempArr2 = []
+    for (let x = 0; x < (dates.length); x++) {
+      //muutetaan päivämäärä suomalaiseen muotoon
+      let y = (dates[x].value).substring(0, 4)
+      let m = (dates[x].value).substring(5, 7)
+      let d = (dates[x].value).substring(8, 10)
+      let date = d + '.' + m + '.' + y
+      tempArr2.push(date)
+    }
+    setDates(tempArr2)
   }
 
   const priceOfTheWeek = () => {
@@ -41,10 +166,11 @@ export default function ElediagramsWeek() {
       return (
         <LineChart
           data={{
-            labels: [sevenDaysAgoDay+'.'+sevenDaysAgoMonth, (sevenDaysAgoDay+1)+'.'+sevenDaysAgoMonth,  
-            (sevenDaysAgoDay+2)+'.'+sevenDaysAgoMonth, (sevenDaysAgoDay+3)+'.'+sevenDaysAgoMonth, 
-            (sevenDaysAgoDay+4)+'.'+sevenDaysAgoMonth, (sevenDaysAgoDay+5)+'.'+sevenDaysAgoMonth, 
-            (sevenDaysAgoDay+6)+'.'+sevenDaysAgoMonth, day+'.'+month], 
+            labels: [/*tähän kohtaa pilkun laittamalla rivi siirtyy oikealle, mutta siirtyy paaaaaljoon
+            tää on paskamainen muotoiltava, mutta katsotaan mitä keksitään*/sevenDaysAgoDay + '.' + sevenDaysAgoMonth, (sevenDaysAgoDay + 1) + '.' + sevenDaysAgoMonth,
+              (sevenDaysAgoDay + 2) + '.' + sevenDaysAgoMonth, (sevenDaysAgoDay + 3) + '.' + sevenDaysAgoMonth,
+              (sevenDaysAgoDay + 4) + '.' + sevenDaysAgoMonth, (sevenDaysAgoDay + 5) + '.' + sevenDaysAgoMonth,
+              (sevenDaysAgoDay + 6) + '.' + sevenDaysAgoMonth],
             datasets: [
               {
                 data: newPrices.map(item => {
@@ -60,24 +186,23 @@ export default function ElediagramsWeek() {
           chartConfig={chartConfig}
           bezier
           style={{
-            paddingRight:35,
+            paddingRight: 35,
             borderRadius: 16
           }}
         />
       )
     }
   }
-
   const chartConfig = {
-    backgroundColor: "purple",
+    backgroundColor: "black",
     backgroundGradientFrom: "#2B2B2B",
     backgroundGradientTo: "#808080",
     decimalPlaces: 0, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //viivojen väri
-    labelColor: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //labeleiden väri
+    labelColor: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //labeleiden väri,
     propsForDots: {
       strokeWidth: "1",
-      stroke: "black" //palleroiden väri,
+      stroke: "black"  //palleroiden väri,
     }
   }
 
@@ -93,21 +218,10 @@ export default function ElediagramsWeek() {
         let json = new XMLParser().parseFromString(data);
         const temp = json.getElementsByTagName('price')
         const temp2 = json.getElementsByTagName('start')
-        setNewPrices([])
+        //poistetaan taulukosta eka, turha startti
+        temp2.splice(0, 2);
         getPriceOfTheWeek(temp)
-        //seuraava hakee taulukon jokaiselle pistelle tarkan ajan,
-        // ja hinnan
-        //tää pitää siirtää omaan funktioon joka sit näyttää nuo,
-        //kun pistettä klikkaa
-        //console.log(temp2[0].value) //tällä saa ulos ekan pisteen pointsDaym ja kellonaika
-        let pointsYear = (temp2[0].value).substring(0,4)
-        let pointsMonth = (temp2[0].value).substring(5,7)
-        let pointsDay = (temp2[0].value).substring(8,10)
-        let pointsHour = (temp2[0].value).substring(11,16)
-        let pointPrice = temp[0].value
-        let pointTime = pointsDay + '.' + pointsMonth + '.' + pointsYear + ' ' + pointsHour
-       /*  console.log('pointTime: ' + pointTime)
-        console.log('pointPrice: ' + pointPrice) */
+        getDates(temp2)
       })
       .catch(err => console.log(err));
   }, [])
@@ -118,7 +232,7 @@ export default function ElediagramsWeek() {
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>Viimeisen vuorokauden aikana</Text>
         {priceOfTheWeek()?priceOfTheWeek() : <ActivityIndicator size="large" color="#ffffff"/>}
-        <Weeklist />
+        <Weeklist newPrices={newPrices} dates={dates} />
       </ScrollView>
     </View>
   )
