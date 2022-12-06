@@ -46,7 +46,7 @@ export default StyleSheet.create({
 
       lowkey: {
         fontSize: 12,
-        backgroundColor: '#5F5F5F',
+        backgroundColor: '#2B2B2B',
         color: 'white',
         fontFamily: 'Roboto',
         paddingTop: 7

@@ -30,7 +30,7 @@ function Development() {
     }}>
       <Tab.Screen lazy={true} name="Päivä" component={ElediagramsDay} />
       <Tab.Screen lazy={true} name="Viikko" component={ElediagramsWeek} />
-      <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} />
+      {/* <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} /> */}
       <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} />
     </Tab.Navigator>
   )
