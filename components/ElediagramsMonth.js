@@ -1,4 +1,4 @@
-
+/* 
 import { ScrollView, Text, View, Dimensions} from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
@@ -229,4 +229,4 @@ export default function ElediagramsMonth() {
     </ScrollView>
     </View>
   )
-}
+} */
