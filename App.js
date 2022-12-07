@@ -3,6 +3,7 @@
 ////// npm install @react-navigation/material-bottom-tabs react-native-paper 
 //npx expo install react-native-svg@13.4.0    npm install react-native-chart-kit
 /// npx expo install react-native-web@~0.18.7 react-dom@18.0.0 @expo/webpack-config@^0.17.0
+/// npm i react-native-dropdown-select-list
 import { View, ScrollView } from 'react-native';
 import Header from "./components/Header";
 import Elepricenow from "./components/Elepricenow";
@@ -30,13 +31,10 @@ function Development() {
     }}>
       <Tab.Screen lazy={true} name="Päivä" component={ElediagramsDay} />
       <Tab.Screen lazy={true} name="Viikko" component={ElediagramsWeek} />
-<<<<<<< HEAD
-     {/*  <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} /> */}
-       <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} />
-=======
       {/* <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} /> */}
-      <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} />
->>>>>>> bba9ab8e8a9bb3175f6a8e33dbddba63527eb96d
+       <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} />
+      {/* <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} /> */}
+      {/* <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} /> */}
     </Tab.Navigator>
   )
   

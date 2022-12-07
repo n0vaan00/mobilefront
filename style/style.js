@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { Button } from 'react-native-paper';
 
 export default StyleSheet.create({
 
@@ -97,6 +98,22 @@ export default StyleSheet.create({
         fontSize: 20,
         color: 'white',
         fontFamily: 'Roboto',
+      },
+
+      modal: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 150
+      },
+
+      modalcontent: {
+        marginTop: 300,
+        width: 350,
+        height: 200,
+        backgroundColor: 'grey',
+        borderRadius: 3,
       },
 });
 
