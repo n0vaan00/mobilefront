@@ -110,8 +110,8 @@ export default StyleSheet.create({
 
       modalcontent: {
         marginTop: 300,
-        width: 350,
-        height: 200,
+        width: '100%',
+        height: '20%',
         backgroundColor: 'grey',
         borderRadius: 3,
       },
