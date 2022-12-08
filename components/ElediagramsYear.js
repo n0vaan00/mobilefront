@@ -21,6 +21,7 @@ export default function ElediagramsYear() {
   const [timesArr, setTimesArr] = useState([]); //tyhjä aika-taulukko, johon päivämäärät tallennetaan vuosiluvun kanssa
   const [selected, setSelected] = useState(""); //valittu kuukausi listalla
   const [months, setMonths] = useState([]) //taulukko, johon haetaan valittavat kuukaudet
+  const [isSelected, setIsSelected] = useState(false);
   
   //tämä rakentaa vuoden kuukauden nimillä, aloittaen edellisestä kuukaudesta
   function getYear() {
@@ -66,12 +67,13 @@ export default function ElediagramsYear() {
     }
   }
 
-
   useEffect(() => {
+    console.log('ElediagramsYear.js - getYear')
     getYear()
   }, [])
   
   function checkTime(selected) {
+    setIsSelected(true)
     var monthNumber = 0
     var monthsLast = 0
     var y = Number(selected.substring(selected.length - 4)) //hakee kk-tekstin vuosiluvun
@@ -129,6 +131,7 @@ export default function ElediagramsYear() {
   }
 
   function getData(monthNumber, monthsLast, y) {
+    console.log('ElediagramsYear.js - getData')
     let start = 'periodStart=' + y + monthNumber + Firstday + StartTime + '&'
     let end = 'periodEnd=' + y + monthNumber + monthsLast + EndTime
     
@@ -173,7 +176,6 @@ export default function ElediagramsYear() {
     setTimesArr(tempDatesArr2)
   }
 
-
   const priceOfTheMonth = () => {
     let lastIndex = times.length -1
     if (newPrices.length) {
@@ -203,35 +205,47 @@ export default function ElediagramsYear() {
       )
     }
   }
-  
-  const [loaded] = useFonts({
-    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
-    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
-    Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf'),
-    Robotobold: require('../assets/fonts/Roboto-Bold.ttf')
-  });
-  if(!loaded) {
-    return null;
-  }
 
+if (isSelected === true) {
   return (
     <View style={styles.square}>
       <ScrollView>
       <View style={styles.titleposdia}>
         <Text style={styles.title}>Sähkön hintakehitys </Text>
-        <Text style={styles.lowkey}>(snt/kWh,sis. Alv 10%)</Text>
-        <Text style={styles.text}>Valitse valikosta kuukausi, jonka arvoja haluat tarkastella (KESKEN)</Text>
       </View>
+      <Text style={styles.text}>Valitse kuukausi, jonka hintoja haluat tarkastella</Text>
       <SelectList
       setSelected={(val) => setSelected(val)} 
       onSelect={() =>checkTime(selected)} 
       data={data}
       save="value"
+      placeholder='Valitse kuukausi'
     />
     {priceOfTheMonth()}
     <YearList newPrices={newPrices} dates={timesArr}/>
       </ScrollView>
     </View>
   )
+}
 
-};
+if (isSelected === false) {
+  return (
+    <View style={styles.square}>
+      <ScrollView>
+      <View style={styles.titleposdia}>
+        <Text style={styles.title}>Sähkön hintakehitys </Text>
+      </View>
+      <Text style={styles.text}>Valitse kuukausi, jonka hintoja haluat tarkastella</Text>
+      <SelectList
+      setSelected={(val) => setSelected(val)} 
+      onSelect={() =>checkTime(selected)} 
+      data={data}
+      save="value"
+      placeholder='Valitse kuukausi'
+    />
+    {priceOfTheMonth()}
+      </ScrollView>
+    </View>
+  )
+}
+}
