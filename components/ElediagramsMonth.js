@@ -1,10 +1,11 @@
-
-import { ScrollView, Text, View, Dimensions} from 'react-native';
+import { ScrollView, Text, View, Dimensions } from 'react-native';
 import { useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
-import { ActivityIndicator } from 'react-native-paper';
 import styles from '../style/style';
+import { ActivityIndicator } from 'react-native-paper';
+import { useFonts } from 'expo-font';
+import MonthList from './MonthList';
 
 const APIKEY = '4d24ca50-7859-4d0d-97c2-de16d61007af';
 const documentType = '&documentType=A44&' //mitä tietoaineistoa luetaan
@@ -139,6 +140,26 @@ const time = new Date().getHours() // current time, tunti. Toimii myös seuraava
 export default function ElediagramsMonth() {
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
   const [dates, setDates] = useState([]); //tyhjä aika-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
+  const [avgs, setAvgs] = useState([]); //tyhjä taulukko vrkn keskiarvoille
+
+  function getAvgs(prices) {
+    const tempAvg = []
+    let a = 24
+    let b = 47
+    let avg = 0
+    for (let length = 0; length <= (prices.length - 25); length++) {
+      for (a=a; a<=b; a++) {
+          let price = Number(prices[a].value)
+          avg += price
+      }
+      let dailyAvg = (avg / 24 / 10 * 1.10).toFixed(2) //alv 10% 1.12 alkaen
+      avg = 0
+      b += 24
+      tempAvg.push(dailyAvg)
+    }
+    setAvgs(tempAvg)
+  }
+
 
   function getpriceOfTheMonth(prices, dates) {
     const tempArr = []
@@ -187,6 +208,7 @@ export default function ElediagramsMonth() {
       )
     }
   }
+
   const chartConfig = {
     backgroundColor: "black",
     backgroundGradientFrom: "#2B2B2B",
@@ -196,11 +218,13 @@ export default function ElediagramsMonth() {
     labelColor: (opacity = 1) => `rgba(255, 195, 0, ${opacity})`, //labeleiden väri,
     propsForDots: {
       strokeWidth: "1",
-      stroke: "black"  //palleroiden väri,
+      stroke: "black" //palleroiden väri,
     }
   }
 
+
   useEffect(() => {
+    console.log('ElediagramsMonth.js')
     fetch(URL, {
       headers: {
         'method': 'GET',
@@ -216,17 +240,33 @@ export default function ElediagramsMonth() {
         temp2.splice(0, 2);
         setNewPrices([])
         getpriceOfTheMonth(temp, temp2)
+        getAvgs(temp)
       })
       .catch(err => console.log(err));
   }, [])
 
+  const [loaded] = useFonts({
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
+    Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf'),
+    Robotobold: require('../assets/fonts/Roboto-Bold.ttf')
+  });
+  if(!loaded) {
+    return null;
+  }
+
   return (
     <View style={styles.square}>
       <ScrollView>
-        <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
-        <Text style={styles.text}>viimeisen kuukauden aikana</Text>
+        <View style={styles.titleposdia}>
+          <Text style={styles.title}>Sähkön hintakehitys </Text>
+          <Text style={styles.lowkey}>(snt/kWh,sis. Alv 10%)</Text>
+        </View>
+        <Text style={styles.text}>viimeisen kuukauden aikana </Text>
         {priceOfTheMonth()?priceOfTheMonth() : <ActivityIndicator size="large" color="#ffffff"/>}
-    </ScrollView>
+        <MonthList newPrices={newPrices} dates={dates} avgs={avgs}/>
+      </ScrollView>
     </View>
   )
 }
+
