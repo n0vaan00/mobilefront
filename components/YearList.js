@@ -1,10 +1,20 @@
 import { List } from 'react-native-paper';
 import { useState } from 'react';
+import { useFonts } from 'expo-font';
 
 const YearList = ({newPrices, dates}) => {
   const [expanded, setExpanded] = useState(true);
   const handlePress = () => setExpanded(!expanded);
 
+  const [loaded] = useFonts({
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
+    Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf'),
+    Robotobold: require('../assets/fonts/Roboto-Bold.ttf')
+  });
+  if(!loaded) {
+    return null;
+  }
   return (
   
     <List.Section title="">

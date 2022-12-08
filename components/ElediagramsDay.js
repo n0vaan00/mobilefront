@@ -3,6 +3,7 @@ import { React, useState, useEffect } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
 import { ActivityIndicator } from 'react-native-paper';
+import { useFonts } from 'expo-font';
 import styles from '../style/style';
 import DayList from './DayList';
 
@@ -227,6 +228,15 @@ export default function ElediagramsDay() {
       .catch(err => console.log(err));
   }, [])
 
+  const [loaded] = useFonts({
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
+    Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf'),
+    Robotobold: require('../assets/fonts/Roboto-Bold.ttf')
+  });
+  if(!loaded) {
+    return null;
+  }
 
   return (
     <View style={styles.square}>

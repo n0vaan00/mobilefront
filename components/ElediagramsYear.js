@@ -2,6 +2,7 @@ import { ScrollView, Text, View, Dimensions, TextComponent, SafeAreaView, Toucha
 import { useState, useEffect, useCallback } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
+import { useFonts } from 'expo-font';
 import styles from '../style/style';
 import { SelectList } from 'react-native-dropdown-select-list'
 import YearList from './YearList'
@@ -203,6 +204,16 @@ export default function ElediagramsYear() {
     }
   }
   
+  const [loaded] = useFonts({
+    Roboto: require('../assets/fonts/Roboto-Regular.ttf'),
+    Orbitronregular: require('../assets/fonts/Orbitron-Regular.ttf'),
+    Orbitronbold: require('../assets/fonts/Orbitron-Bold.ttf'),
+    Robotobold: require('../assets/fonts/Roboto-Bold.ttf')
+  });
+  if(!loaded) {
+    return null;
+  }
+
   return (
     <View style={styles.square}>
       <ScrollView>

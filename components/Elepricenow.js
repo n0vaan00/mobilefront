@@ -259,11 +259,11 @@ export default function Elepricenow() {
               <Text style={styles.notimportant}>Vihreänuoli alas = hinta on suurempi kuin tunnin päästä</Text>
               <Text>Punainen nuoli ylös = hinta on pienenpi kuin tunnin päästä</Text>
               <Text>Keltainen oikealle = hinta on nyt sama kuin tunnin päästä</Text>
-              <Button color='white' title='sulje' onPress={() => setModalOpen(false)}></Button>
+              <Button color='black' title='sulje' onPress={() => setModalOpen(false)}></Button>
               </View>
               </View>
             </Modal>
-            <MaterialCommunityIcons name='chat-question' size={'60'} color={'white'} onPress={() => setModalOpen(true)}></MaterialCommunityIcons>
+            <MaterialCommunityIcons name='chat-question'  size={40}  color={'white'} onPress={() => setModalOpen(true)}></MaterialCommunityIcons>
           </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Päivän ylin:  </Text>

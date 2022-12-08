@@ -15,7 +15,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import ElediagramsWeek from './components/ElediagramsWeek';
-/* import ElediagramsMonth from './components/ElediagramsMonth'; */
+ import ElediagramsMonth from './components/ElediagramsMonth'; 
 import ElediagramsYear from './components/ElediagramsYear';
 import Loading from './components/Loading';
 import Errorinfo from './components/Errorinfo';
@@ -31,7 +31,7 @@ function Development() {
     }}>
       <Tab.Screen lazy={true} name="Päivä" component={ElediagramsDay} />
       <Tab.Screen lazy={true} name="Viikko" component={ElediagramsWeek} />
-      {/* <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} /> */}
+      { <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} />}
        <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} />
       {/* <Tab.Screen lazy={true} name="Kuukausi" component={ElediagramsMonth} /> */}
       {/* <Tab.Screen lazy={true} name="Vuosi" component={ElediagramsYear} /> */}
