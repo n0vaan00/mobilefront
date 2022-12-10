@@ -24,7 +24,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function Development() {
   return (
-    <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontFamily: 'Robotobold', color: 'white' },
+    <Tab.Navigator swipeEnabled={false} screenOptions= {{tabBarLabelStyle: { fontSize: 13 , fontFamily: 'Robotobold', color: 'white' },
     tabBarStyle: { backgroundColor: '#808080', borderWidth: 2, borderColor: '#5F5F5F'},
     tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 2}
     
@@ -57,7 +57,7 @@ export default function App() {
     <View style={styles.container}>
       <Header />
       <NavigationContainer>
-      <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontFamily: 'Robotobold', color: 'white' },
+      <Tab.Navigator screenOptions= {{tabBarLabelStyle: { fontSize: 14 , fontFamily: 'Robotobold', color: 'white', flex: 3, height: '15%',},
         tabBarStyle: { backgroundColor: '#5F5F5F'},
         tabBarIndicatorStyle: {backgroundColor: '#FFC300', height: 2 }
         }}>

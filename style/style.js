@@ -7,6 +7,8 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#2B2B2B',
         borderRadius: 3,
+        height: '100%',
+        width: '100%',
       },
 
       header: {
@@ -16,7 +18,7 @@ export default StyleSheet.create({
 
       logo: {
         margin: 50,
-        flex: 1,
+        flex: 2,
         aspectRatio: 3.5,
         resizeMode: 'contain',
         display: 'flex',
@@ -58,9 +60,10 @@ export default StyleSheet.create({
         paddingTop: 10,
         paddingBottom: 20,
         height: '100%',
+        width: '100%',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center', 
+        justifyContent: 'center',
       },
 
       important: {
@@ -92,6 +95,9 @@ export default StyleSheet.create({
       flex:{
         paddingLeft: 20,
         paddingBottom: 40,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
       },
 
       errortext: {
@@ -101,19 +107,27 @@ export default StyleSheet.create({
       },
 
       modal: {
-        flex: 1,
+        flex: 4,
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 150
+        height: '100%',
       },
 
       modalcontent: {
         marginTop: 300,
         width: '100%',
-        height: '20%',
-        backgroundColor: 'grey',
+        height: 200,
+        backgroundColor: '#5F5F5F',
         borderRadius: 3,
+        padding: 10,
+        paddingTop: 15,
+      },
+
+      modaltext: {
+        color:'white',
+        padding: 5,
+        fontFamily: 'Roboto'
       },
 });
 
