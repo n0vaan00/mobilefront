@@ -252,14 +252,14 @@ export default function Elepricenow() {
                 color={color}
                 size={40}
                 style={styles.icon}
-              ></MaterialCommunityIcons></Text>
+              /></Text>
             <Modal presentationStyle="overFullScreen" transparent style={styles.modalcontent} visible={modalOpen}>
               <View style={styles.modal}>
               <View style={styles.modalcontent}>
               <Text style={styles.modaltext}>Vihreänuoli alas = hinta on suurempi kuin tunnin päästä</Text>
               <Text style={styles.modaltext}>Punainen nuoli ylös = hinta on pienenpi kuin tunnin päästä</Text>
               <Text style={styles.modaltext}>Keltainen oikealle = hinta on nyt sama kuin tunnin päästä</Text>
-              <Button color='white' title='sulje' onPress={() => setModalOpen(false)}></Button>
+              <Button color='grey' title='sulje' onPress={() => setModalOpen(false)}></Button>
               </View>
               </View>
             </Modal>

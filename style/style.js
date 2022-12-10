@@ -127,7 +127,8 @@ export default StyleSheet.create({
       modaltext: {
         color:'white',
         padding: 5,
-        fontFamily: 'Roboto'
+        fontFamily: 'Roboto',
+        marginBottom: 13,
       },
 });
 
