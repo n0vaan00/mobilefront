@@ -130,6 +130,36 @@ export default StyleSheet.create({
         fontFamily: 'Roboto',
         marginBottom: 13,
       },
+      descriptionStyle: {
+        backgroundColor: "white",
+        fontFamily: 'Roboto',
+      },
+      //näytä-otsikko, päivämäärät
+      titleStyle: {
+        color:'white', 
+        backgroundColor:'#808080',
+        alignSelf: 'center',
+        fontFamily: 'Roboto',
+      },
+      //tuntihinnat
+      descriptionStyleItems: {
+        color: 'white',
+        alignSelf: 'center',
+        fontWeight: 'bold',
+        fontSize: 18,
+      },
+      titleStyleItems: {
+        color:'white',
+        alignSelf: 'center',
+        fontFamily: 'Roboto',
+      },
+      //keskiarvot
+      titleDescriptionStyle: {
+        color: 'white',
+        alignSelf: 'center',
+        backgroundColor: '#808080',
+        fontFamily: 'Roboto',
+      }
 });
 
 

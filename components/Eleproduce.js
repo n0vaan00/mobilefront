@@ -151,6 +151,7 @@ export default function Eleproduce() {
   const [lastLoad, setLastLoad] = useState(''); //viimeisin toteutunut kokonaiskulutus
   const [lastGeneration, setLastGeneration] = useState(''); //ennustettu kokonaistuotanto
   const [importNeed, setImportNeed] = useState(''); // muuttuja tuontisähkön tarpeelle
+  const [isLoading, setIsLoading] = useState(false); // spinnerille
 
   // funktio tuontisähkön tarpeen laskentaan
   function importNeedCalculation(lastLoad, lastGeneration) {
@@ -167,6 +168,7 @@ export default function Eleproduce() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     Promise.all([
       fetch(URL),
       fetch(URL2), {
@@ -189,6 +191,7 @@ export default function Eleproduce() {
         let lastGenerationTemp = Number(generationsTemp[index].value)
         importNeedCalculation(lastLoadTemp, lastGenerationTemp)
         setLastGeneration(Number(generationsTemp[index].value));
+        setIsLoading(false);
       })
       .catch(err => console.log(err));
   }, [])
@@ -209,15 +212,15 @@ export default function Eleproduce() {
           <Text style={styles.title}>Sähkön kokonaiskulutus ja -tuotanto Suomessa kello: {index} - {index + 1} (MWh/h)</Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Toteutunut kokonaiskulutus:  </Text>
-            <Text style={styles.notimportant}>{lastLoad ? lastLoad : <ActivityIndicator size="small" color="#ffffff" />}</Text>
+            <Text style={styles.notimportant}>{isLoading ? <ActivityIndicator size="small" color="#ffffff" /> : lastLoad}</Text>
           </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Suunniteltu kokonaistuotanto:  </Text>
-            <Text style={styles.notimportant}>{lastGeneration ? lastGeneration : <ActivityIndicator size="small" color="#ffffff" />}</Text>
+            <Text style={styles.notimportant}>{isLoading ? <ActivityIndicator size="small" color="#ffffff" /> : lastGeneration}</Text>
           </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Laskennallinen tuontisähkön tarve:  </Text>
-            <Text style={styles.notimportant}>{importNeed ? importNeed : <ActivityIndicator size="small" color="#ffffff" />}</Text>
+            <Text style={styles.notimportant}>{isLoading ? <ActivityIndicator size="small" color="#ffffff" /> : importNeed}</Text>
           </Text>
         </ScrollView>
       </View>

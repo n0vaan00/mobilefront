@@ -141,6 +141,7 @@ export default function ElediagramsMonth() {
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
   const [dates, setDates] = useState([]); //tyhjä aika-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
   const [avgs, setAvgs] = useState([]); //tyhjä taulukko vrkn keskiarvoille
+  const [isLoading, setIsLoading] = useState(false);
 
   function getAvgs(prices) {
     const tempAvg = []
@@ -225,6 +226,7 @@ export default function ElediagramsMonth() {
 
   useEffect(() => {
     console.log('ElediagramsMonth.js')
+    setIsLoading(true)
     fetch(URL, {
       headers: {
         'method': 'GET',
@@ -240,6 +242,7 @@ export default function ElediagramsMonth() {
         temp2.splice(0, 2);
         setNewPrices([])
         getpriceOfTheMonth(temp, temp2)
+        setIsLoading(false); 
         getAvgs(temp)
       })
       .catch(err => console.log(err));
@@ -263,7 +266,7 @@ export default function ElediagramsMonth() {
           <Text style={styles.lowkey}>(snt/kWh,sis. Alv 10%)</Text>
         </View>
         <Text style={styles.text}>viimeisen kuukauden aikana </Text>
-        {priceOfTheMonth()?priceOfTheMonth() : <ActivityIndicator size="large" color="#ffffff"/>}
+        {isLoading ? <ActivityIndicator size="large" color="#ffffff"/> : priceOfTheMonth()}
         <MonthList newPrices={newPrices} dates={dates} avgs={avgs}/>
       </ScrollView>
     </View>

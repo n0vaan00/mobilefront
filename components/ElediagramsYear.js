@@ -3,6 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import XMLParser from 'react-xml-parser';
 import { LineChart } from "react-native-chart-kit";
 import { useFonts } from 'expo-font';
+import { ActivityIndicator } from 'react-native-paper';
 import styles from '../style/style';
 import { SelectList } from 'react-native-dropdown-select-list'
 import YearList from './YearList'
@@ -22,6 +23,7 @@ export default function ElediagramsYear() {
   const [selected, setSelected] = useState(""); //valittu kuukausi listalla
   const [months, setMonths] = useState([]) //taulukko, johon haetaan valittavat kuukaudet
   const [isSelected, setIsSelected] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
   //tämä rakentaa vuoden kuukauden nimillä, aloittaen edellisestä kuukaudesta
   function getYear() {
@@ -70,6 +72,7 @@ export default function ElediagramsYear() {
   useEffect(() => {
     console.log('ElediagramsYear.js - getYear')
     getYear()
+    setIsLoading(true)
   }, [])
   
   function checkTime(selected) {
@@ -150,6 +153,7 @@ export default function ElediagramsYear() {
         const dates = json.getElementsByTagName('start')
         dates.splice(0,2)
         getpriceOfTheMonth(prices,dates)
+        setIsLoading(false)
       })
       .catch(err => console.log(err));
   }
@@ -221,7 +225,7 @@ if (isSelected === true) {
       save="value"
       placeholder='Valitse kuukausi'
     />
-    {priceOfTheMonth()}
+    {isLoading ? <ActivityIndicator size="large" color="#ffffff" /> : priceOfTheMonth()}
     <YearList newPrices={newPrices} dates={timesArr}/>
       </ScrollView>
     </View>

@@ -149,6 +149,7 @@ export default function Elepricenow() {
   const [minPrice, setMinPrice] = useState(0)
   const [avg, setAvg] = useState(0)
   const [modalOpen, setModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // spinnerille
 
   function compare(priceNow, priceNextHour) {
     //jos hinta nyt on suurempi kuin hinta tunnin päästä, kääntää nuolen alas ja muuttaa värin vihreäksi
@@ -206,6 +207,7 @@ export default function Elepricenow() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(URL, {
       headers: {
         'method': 'GET',
@@ -225,6 +227,7 @@ export default function Elepricenow() {
         findMinPrice(temp)
         compare(sum, priceNext)
         findAvg(temp)
+        setIsLoading(false);
       })
       .catch(err => console.log(err));
   }, [])
@@ -246,7 +249,7 @@ export default function Elepricenow() {
           <Text style={styles.title}>Sähkön hinta tänään (snt/kWh,sis. Alv 24%)</Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Hinta nyt:  </Text>
-            <Text style={styles.important}>{priceNow ? priceNow : <ActivityIndicator size="large" color="#ffffff" />}
+            <Text style={styles.important}>{isLoading ? <ActivityIndicator size="large" color="#ffffff" /> : priceNow}
               <MaterialCommunityIcons
                 name={'arrow-' + arrow + '-bold'}
                 color={color}
@@ -267,15 +270,15 @@ export default function Elepricenow() {
           </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Päivän ylin:  </Text>
-            <Text style={styles.notimportant}>{maxPrice ? maxPrice : <ActivityIndicator size="small" color="#ffffff" />} </Text>
+            <Text style={styles.notimportant}>{isLoading ? <ActivityIndicator size="small" color="#ffffff" /> : maxPrice} </Text>
           </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Päivän alin:  </Text>
-            <Text style={styles.notimportant}>{minPrice ? minPrice : <ActivityIndicator size="small" color="#ffffff" />}</Text>
+            <Text style={styles.notimportant}>{isLoading ? <ActivityIndicator size="small" color="#ffffff" /> : minPrice}</Text>
           </Text>
           <Text style={styles.flex}>
             <Text style={styles.text}>Päivän keskihinta:  </Text>
-            <Text style={styles.notimportant}>{avg ? avg : <ActivityIndicator size="small" color="#ffffff" />}</Text>
+            <Text style={styles.notimportant}>{isLoading ? <ActivityIndicator size="small" color="#ffffff" /> : avg}</Text>
           </Text>
         </ScrollView>
       </View>

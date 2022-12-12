@@ -140,6 +140,7 @@ const time = new Date().getHours() // current time, tunti. Toimii myös seuraava
 export default function ElediagramsWeek() {
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
   const [dates, setDates] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
+  const [isLoading, setIsLoading] = useState(false);
 
   function getPriceOfTheWeek(prices) {
     const tempArr = []
@@ -208,6 +209,7 @@ export default function ElediagramsWeek() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(URL, {
       headers: {
         'method': 'GET',
@@ -223,6 +225,7 @@ export default function ElediagramsWeek() {
         temp2.splice(0, 2);
         getPriceOfTheWeek(temp)
         getDates(temp2)
+        setIsLoading(false);
       })
       .catch(err => console.log(err));
   }, [])
@@ -242,7 +245,7 @@ export default function ElediagramsWeek() {
       <ScrollView>
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>Viimeisen vuorokauden aikana</Text>
-        {priceOfTheWeek()?priceOfTheWeek() : <ActivityIndicator size="large" color="#ffffff"/>}
+        {isLoading ? <ActivityIndicator size="large" color="#ffffff" /> : priceOfTheWeek()}
         <Weeklist newPrices={newPrices} dates={dates} />
       </ScrollView>
     </View>

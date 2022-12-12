@@ -142,6 +142,7 @@ const time = new Date().getHours() // current time, tunti. Toimii myös seuraava
 export default function ElediagramsDay() {
   const [newPrices, setNewPrices] = useState([]); //tyhjä hinta-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
   const [times, setTimes] = useState([]); //tyhjä aika-taulukko, johon päivän hinnat tallennetaan muutoksen jälkeen
+  const [isLoading, setIsLoading] = useState(false);
 
   function getPriceOfTheDay(prices, dates) {
     const tempArr = []
@@ -201,6 +202,7 @@ export default function ElediagramsDay() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     fetch(URL, {
       headers: {
         'method': 'GET',
@@ -225,6 +227,7 @@ export default function ElediagramsDay() {
         let pointsHour = (temp2[0].value).substring(11, 16)
         let pointPrice = temp[0].value
         //console.log('Aika ja hinta indeksissä 0: ' +pointsHour + ' ja ' + pointPrice)
+        setIsLoading(false);
       })
       .catch(err => console.log(err));
   }, [])
@@ -244,7 +247,7 @@ export default function ElediagramsDay() {
       <ScrollView>
         <Text style={styles.title}>Sähkön hintakehitys (snt/kWh,sis. Alv 24%) </Text>
         <Text style={styles.text}>viimeisen vuorokauden aikana</Text>
-        {priceOfTheDay()?priceOfTheDay() : <ActivityIndicator size="large" color="#ffffff"/>}
+        {isLoading ? <ActivityIndicator size="large" color="#ffffff" /> : priceOfTheDay()}
         <DayList newPrices={newPrices}/>
       </ScrollView>
     </View>
